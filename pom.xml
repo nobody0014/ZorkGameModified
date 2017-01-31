@@ -39,7 +39,7 @@
               <finalName>ZorkGame</finalName>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>io.muic.ooc.ZorkGame</mainClass>
+                  <mainClass>io.muic.ooc.MainLoop.ZorkGame</mainClass>
                 </transformer>
               </transformers>
             </configuration>

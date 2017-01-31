@@ -7,7 +7,7 @@ Tell the following items:
 
 Availability: All the time
 
-2) North, South, East, West
+2)Go  <direction or place>
 Move to the room in the direction
 
 Availability: available only in dungeon
