@@ -16,6 +16,10 @@ public class ZorkView {
         System.out.println("Please Enter your player name: ");
     }
 
+    public static void printFinishLine(){
+        System.out.println("----------------------------\n");
+    }
+
     public static void printHelp(){
         System.out.println("go <direction/place you want to as long as it is valid>");
         System.out.println("talk <NPC> -Works even on monster but you are wasting your turn, unless they aren't aggroed yet\n" +
@@ -78,7 +82,7 @@ public class ZorkView {
         System.out.println("Item Pickable: " + room.getItems().toString());
         System.out.println("Room Exits: " + room.getExits().keySet().toString());
         System.out.println("Level Exits: " + room.getLevelExits().keySet().toString());
-        System.out.println("-----------------------------------------------------\n\n");
+        printFinishLine();
     }
 
     public static boolean quitGame(){
@@ -88,10 +92,13 @@ public class ZorkView {
 
     public static boolean confirmation(){
         Scanner scanner = new Scanner(input);
+        boolean toReturn = false;
         while (true){
             String ans = scanner.next();
             if (ans.equals("y")){
-                return true;
+                toReturn = true;
+                System.out.println("You have chosen to quit the game.");
+                break;
             }
             else if (ans.equals("n")){
                 System.out.println("You have chosen not to quit the game.");
@@ -100,6 +107,7 @@ public class ZorkView {
                 System.out.println("Invalid Command: Please answer y or n");
             }
         }
-        return false;
+        printFinishLine();
+        return toReturn;
     }
 }

@@ -1,18 +1,20 @@
 package io.muic.ooc.Command.ActualCommand;
 
 import io.muic.ooc.Command.Command;
+import io.muic.ooc.MainLoop.ZorkView;
 
 /**
  * Created by wit on 2/1/2017 AD.
  */
 public class Quit extends Command{
 
-
     /**
-     * quit the damn game
+     * quit the game
+     * @return the boolean result from confirmation
      */
     @Override
-    public void execute() {
-
+    public boolean execute() {
+        boolean quitGame = !ZorkView.quitGame();
+        return quitGame;
     }
 }

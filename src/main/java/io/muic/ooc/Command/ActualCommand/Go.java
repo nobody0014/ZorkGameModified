@@ -8,13 +8,9 @@ import io.muic.ooc.Unit.Player;
  * Created by wit on 2/1/2017 AD.
  */
 public class Go extends Command{
-    String destination;
 
-    public Go(String destination){
-        setDestination(destination.toLowerCase());
-    }
-
-    public void execute(){
+    @Override
+    public boolean execute(){
 
 //        if (this.destination.equals("north") || this.destination.equals("south") || this.destination.equals("east") ||
 //                this.destination.equals("west")){
@@ -22,13 +18,8 @@ public class Go extends Command{
 //        }else {
 //
 //        }
+
+        return true;
     }
 
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
 }

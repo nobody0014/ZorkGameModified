@@ -11,7 +11,7 @@ public class Defend extends Command{
      * Increase the defense temporarily
      */
     @Override
-    public void execute() {
-
+    public boolean execute() {
+        return true;
     }
 }

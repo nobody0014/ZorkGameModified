@@ -7,7 +7,9 @@ import io.muic.ooc.MainLoop.ZorkView;
  * Created by wit on 2/1/2017 AD.
  */
 public class Help extends Command {
-    public void execute(){
+    @Override
+    public boolean execute() {
         ZorkView.printHelp();
+        return true;
     }
 }

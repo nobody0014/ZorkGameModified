@@ -10,7 +10,8 @@ public class Equipment extends Command {
     /**
      * Print out the equipment the player is currently equipping
      */
-    public void execute(){
-
+    @Override
+    public boolean execute(){
+        return true;
     }
 }

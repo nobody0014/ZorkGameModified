@@ -1,5 +1,8 @@
 package io.muic.ooc.MainLoop;
 
+import io.muic.ooc.Command.Command;
+import io.muic.ooc.Command.CommandParser;
+
 import java.util.Scanner;
 
 /**
@@ -14,13 +17,14 @@ public class ZorkGame {
 
         System.out.println("Please enter your name: ");
         String name = cin.nextLine();
-        System.out.println("------------------------");
+        ZorkView.printFinishLine();
 
         ZorkRunner zorkRunner = new ZorkRunner(name);
 
         while (true){
-            String nextLine = cin.nextLine();
-            if (!zorkRunner.executeCommand(nextLine.split(" "))){
+            String command = cin.nextLine();
+            Command cmd  = CommandParser.parseInput(command);
+            if (!zorkRunner.executeCommand(cmd)){
                 break;
             }
         }

@@ -12,7 +12,7 @@ public class RoomInformation extends Command{
      * print out the information of the current room
      */
     @Override
-    public void execute() {
-
+    public boolean execute() {
+        return true;
     }
 }

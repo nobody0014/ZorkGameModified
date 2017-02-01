@@ -11,7 +11,7 @@ public class Map extends Command{
      * print out the current map and location
      */
     @Override
-    public void execute() {
-
+    public boolean execute() {
+        return true;
     }
 }

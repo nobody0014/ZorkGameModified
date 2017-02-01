@@ -7,16 +7,11 @@ import io.muic.ooc.Command.Command;
  */
 public class Use extends Command {
 
-    String consumableName;
-    public Use(String consumableName){
-        this.consumableName = consumableName;
-    }
-
     /**
      * Use the consumable if possible --> works only with consumable
      */
     @Override
-    public void execute() {
-
+    public boolean execute() {
+        return true;
     }
 }

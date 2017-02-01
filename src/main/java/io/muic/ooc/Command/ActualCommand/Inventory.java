@@ -11,7 +11,7 @@ public class Inventory extends Command {
      * Print out the inventory of the player
      */
     @Override
-    public void execute() {
-
+    public boolean execute() {
+        return true;
     }
 }
