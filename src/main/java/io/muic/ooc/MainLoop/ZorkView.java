@@ -1,13 +1,16 @@
 package io.muic.ooc.MainLoop;
 
 import io.muic.ooc.RoomAndLevel.Room;
+import io.muic.ooc.RoomAndLevel.Level;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
  * Created by wit on 1/30/2017 AD.
  */
 public class ZorkView {
+    public static InputStream input = System.in;
 
     public static void askUserName(){
         System.out.println("Please Enter your player name: ");
@@ -52,22 +55,30 @@ public class ZorkView {
         System.out.println("The specified NPC does not exists to be attacked");
     }
 
-    public static void invalidSkill(){
+    public static void printInvalidSkill(){
         System.out.println("There's no such skill available");
     }
 
-    public static void invalidStat(){
+    public static void printInvalidStat(){
         System.out.println("There's no such NPC available");
     }
 
-    public static void invalidConsumable(){
+    public static void printInvalidConsumable(){
         System.out.println("There's no such consumable in your inventory");
     }
 
+    public static void printInvalidMovement(){
+        System.out.println("There's no such direction or level");
+    }
 
-    public static void printRoomDetail(Room room){
-        System.out.println("Friendly NPC:");
-//        for (int i = 0; i < room.getNpcs().l)
+    public static void printRoomDetail(Level level){
+        Room room = level.getCurrentRoom();
+        System.out.println("Current Level Information: " + level.getRoomsName() + " " + room.getRoomX() + " " + room.getRoomY());
+        System.out.println("NPC: " + room.getNpcs().toString());
+        System.out.println("Item Pickable: " + room.getItems().toString());
+        System.out.println("Room Exits: " + room.getExits().keySet().toString());
+        System.out.println("Level Exits: " + room.getLevelExits().keySet().toString());
+        System.out.println("-----------------------------------------------------\n\n");
     }
 
     public static boolean quitGame(){
@@ -76,9 +87,9 @@ public class ZorkView {
     }
 
     public static boolean confirmation(){
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(input);
         while (true){
-            String ans = scanner.nextLine();
+            String ans = scanner.next();
             if (ans.equals("y")){
                 return true;
             }

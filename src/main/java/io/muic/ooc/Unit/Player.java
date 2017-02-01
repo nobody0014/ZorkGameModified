@@ -1,27 +1,33 @@
 package io.muic.ooc.Unit;
 
+import io.muic.ooc.Calculator.StatCalculator;
+import io.muic.ooc.Item.Equipment;
+import io.muic.ooc.Item.Item;
+
+import java.util.ArrayList;
+
 /**
  * Created by wit on 1/12/2017 AD.
  */
 public class Player extends Unit {
 
-    private int statPoints;
+    private int statPoints = 0;
 
     private int currentExp;
     private int maxExp;
 
     //For equipped items
-    private int extraStr;
-    private int extraDex;
-    private int extraInt;
-    private int extraWis;
-    private int extraCon;
-    private int extraLuck;
+    private int extraStr = 0;
+    private int extraDex = 0;
+    private int extraInt = 0;
+    private int extraWis = 0;
+    private int extraCon = 0;
+    private int extraLuck = 0;
 
+    private Equipment[] equipments = new Equipment[3];
 
-
-
-    public Player(){
+    public Player(String name){
+        super(name);
         setLevel(1);
         setBaseCon(5);
         setBaseDex(5);
@@ -29,52 +35,183 @@ public class Player extends Unit {
         setBaseLuck(5);
         setBaseStr(5);
         setBaseDex(5);
+        setCurrentExp(0);
         updateStatus();
     }
 
 
+    /**
+     * update the status by looking at the base stat
+     */
     @Override
     public void updateStatus(){
         super.updateStatus();
-        setMaxExp(getLevel());
+        setMaxExp(StatCalculator.calculateMaxExp(getLevel()));
     }
 
-    public void levelUp(){
+    /**
+     * usually will be called by others
+     * @param expGain
+     */
+    public void increaseExp(int expGain){
+        setCurrentExp(getCurrentExp() + expGain);
+        if (getCurrentExp() >= getMaxExp()){
+            setCurrentExp(getCurrentExp() - getMaxExp());
+            levelUp();
+            //Print level up
+        }
+    }
+
+
+    /**
+     * increase level, increase stat points, refill hp and mana
+     */
+    private void levelUp(){
         setLevel(getLevel()+1);
         setCurrentHp(getMaxHp());
         setCurrentMana(getMaxMana());
         setStatPoints(getStatPoints()+10);
     }
 
+    /**
+     * take item name and then used
+     * @param itemName
+     * @return
+     */
+    public boolean equip(String itemName) {
+        boolean success = false;
+        for (Item item: getInventory()){
+            if (item.getItemName().equals(itemName) && item instanceof Equipment){
+                Equipment eq = (Equipment) item;
+                equipItem(eq,eq.getEquipmentSlot());
+                success = true;
+                break;
+            }
+        }
+        return success;
+    }
+
+    /**
+     * Overloaded version of equip.. this time using the arrangement of inverntory
+     * @param inventorySlot
+     * @return
+     */
+    public boolean equip(int inventorySlot) {
+        boolean success = false;
+        if (!(getInventory().size() < inventorySlot) || !(inventorySlot >= 0)){
+            if (getInventory().get(inventorySlot) instanceof Equipment){
+                Equipment eq = (Equipment) getInventory().get(inventorySlot);
+                equipItem(eq, eq.getEquipmentSlot());
+                success = true;
+            }
+        }
+        return success;
+    }
 
 
-    public void incrementBaseStr(){setBaseStr(getBaseStr()+1);}
+    /**
+     * place equipment in the desired slot and return the equipment that was replaced --> null if there's none
+     * @param equipment
+     * @param slot
+     * @return
+     */
+    private void equipItem(Equipment equipment, int slot){
+        Equipment toReturn = null;
+        if (equipments[slot] != null){
+            toReturn = equipments[slot];
+        }
+        if (toReturn != null){
+            addItemToInventory(toReturn);
+        }
+        equipments[slot] = equipment;
+    }
 
-    public void incrementBaseCon(){setBaseCon(getBaseCon()+1);}
 
-    public void incrementBaseInt(){setBaseInt(getBaseInt()+1);}
 
-    public void incrementBaseLuck(){setBaseLuck(getBaseLuck()+1);}
+    public boolean increaseStr(){
+        if (getStatPoints() > 0){
+            incrementBaseStr();
+            decrementStatPoints();
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-    public void incrementBaseWis(){setBaseWis(getBaseWis()+1);}
+    public boolean increaseCon(){
+        if (getStatPoints() > 0){
+            incrementBaseCon();
+            decrementStatPoints();
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-    public void incrementBaseDex(){setBaseDex(getBaseDex()+1);}
+    public boolean increaseWis(){
+        if (getStatPoints() > 0){
+            incrementBaseWis();
+            decrementStatPoints();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean increaseInt(){
+        if (getStatPoints() > 0){
+            incrementBaseInt();
+            decrementStatPoints();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean increaseDex(){
+        if (getStatPoints() > 0){
+            incrementBaseDex();
+            decrementStatPoints();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean increaseLuck(){
+        if (getStatPoints() > 0){
+            incrementBaseLuck();
+            decrementStatPoints();
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-    public void decrementStatPoints(){setStatPoints(getStatPoints()-1);}
+    private void incrementBaseStr(){setBaseStr(getBaseStr()+1);}
 
+    private void incrementBaseCon(){setBaseCon(getBaseCon()+1);}
+
+    private void incrementBaseInt(){setBaseInt(getBaseInt()+1);}
+
+    private void incrementBaseLuck(){setBaseLuck(getBaseLuck()+1);}
+
+    private void incrementBaseWis(){setBaseWis(getBaseWis()+1);}
+
+    private void incrementBaseDex(){setBaseDex(getBaseDex()+1);}
+
+    private void decrementStatPoints(){setStatPoints(getStatPoints()-1);}
 
     public int getCurrentExp() {
         return currentExp;
     }
 
-    public void setCurrentExp(int currentExp) {
+    private void setCurrentExp(int currentExp) {
         this.currentExp = currentExp;
     }
 
     public int getMaxExp() {
         return maxExp;
     }
-    public void setMaxExp(int maxExp) {
+
+    private void setMaxExp(int maxExp) {
         this.maxExp = maxExp;
     }
 

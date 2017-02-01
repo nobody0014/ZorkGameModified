@@ -1,27 +1,27 @@
 package io.muic.ooc.RoomAndLevel;
 
-import java.util.HashMap;
-
 /**
  * Created by wit on 1/28/2017 AD.
  */
-public class Rooms {
+public class Level {
     private Room[][] rooms;
 
     private String roomsName;
 
     private int playerX;
     private int playerY;
+    private int size;
 
-    public Rooms(int size, String roomName){
+    public Level(int size, String roomName){
+        this.size = size;
         rooms = new Room[size][size];
         this.roomsName = roomName;
     }
 
     /**
      * This method is used to check whether the pattern of the password is correct or not
-     * @param locationX location of the Room in Rooms x matrix,
-     * @param locationY location of the Room in Rooms y matrix,
+     * @param locationX location of the Room in Level x matrix,
+     * @param locationY location of the Room in Level y matrix,
      * @param room the actual room
      * @return true if the room is added in successfully,
      *         false otherwise (could be because of room already added at that slot or bad location)
@@ -55,10 +55,10 @@ public class Rooms {
         if (direction.equals("north") && getPlayerY()-1 >= 0 && rooms[getPlayerX()][getPlayerY()-1] != null){
             changeRoomSuccess = true;
             setPlayerY(getPlayerY()-1);
-        }else if (direction.equals("south") && getPlayerY()+1 >= 0 && rooms[getPlayerX()][getPlayerY()+1] != null) {
+        }else if (direction.equals("south") && getPlayerY()+1 < getSize() && rooms[getPlayerX()][getPlayerY()+1] != null) {
             changeRoomSuccess = true;
             setPlayerY(getPlayerY()+1);
-        }else if (direction.equals("east") && getPlayerX()+1 >= 0 && rooms[getPlayerX()+1][getPlayerY()] != null){
+        }else if (direction.equals("east") && getPlayerX()+1 < getSize()  && rooms[getPlayerX()+1][getPlayerY()] != null){
             changeRoomSuccess = true;
             setPlayerX(getPlayerX()+1);
         }else if (direction.equals("west") && getPlayerX()-1 >= 0 && rooms[getPlayerX()-1][getPlayerY()] != null){
@@ -68,7 +68,7 @@ public class Rooms {
         return changeRoomSuccess;
     }
 
-    public Rooms changeLevel(String desiredDestination){
+    public Level changeLevel(String desiredDestination){
         return rooms[getPlayerX()][getPlayerY()].getLevelExit(desiredDestination);
     }
 
@@ -92,4 +92,7 @@ public class Rooms {
         return roomsName;
     }
 
+    public int getSize() {
+        return size;
+    }
 }

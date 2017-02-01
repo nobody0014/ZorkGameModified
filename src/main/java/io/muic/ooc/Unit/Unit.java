@@ -41,9 +41,14 @@ public abstract class Unit {
     private float criticalDefense;
 
 
-    //Bag
-    private ArrayList<Item> inventory;
 
+
+    //Bag
+    private ArrayList<Item> inventory = new ArrayList<>();
+
+    public Unit(String name){
+        setUnitName(name);
+    }
 
     public void gainHp(int hp) {
         if (getCurrentHp() + hp > getMaxHp()) {
@@ -60,6 +65,7 @@ public abstract class Unit {
         }
     }
 
+
     //Called when there's a change in level or change in base stat, it will calculate other stat that in used in battle
     public void updateStatus() {
 
@@ -67,23 +73,22 @@ public abstract class Unit {
         setPhysicalDenfense(StatCalculator.calculatePhysicalDefense(getBaseStr(), getBaseCon()));
         setMagicalAttack(StatCalculator.calculateMagicalAttack(getBaseInt(), getBaseDex()));
         setMagicalDefense(StatCalculator.calculateMagicalDefense(getBaseInt(), getBaseCon()));
-//        setAccuracy();
-//        setDodgeChance();
-//        setCriticalChance();
-//        setMaxHp();
-//        setMaxMana();
+        setAccuracy(StatCalculator.calculateAccuracy(getBaseDex(),getBaseLuck()));
+        setDodgeChance(StatCalculator.calculateDodgeChance(getBaseDex(),getBaseLuck()));
+        setCriticalChance(StatCalculator.calculateCriticalChance(getBaseDex(),getBaseLuck()));
+        setMaxHp(StatCalculator.calculateMaxHp(getBaseStr(),getBaseCon()));
+        setMaxMana(StatCalculator.calculateMaxMana(getBaseInt(),getBaseWis()));
     }
 
-
-    public void die() {
+    public void addItemToInventory(Item item){
+        getInventory().add(item);
     }
-
 
     public boolean isAlive() {
         return isAlive;
     }
 
-    public void setAlive(boolean alive) {
+    private void setAlive(boolean alive) {
         isAlive = alive;
     }
 
@@ -91,7 +96,7 @@ public abstract class Unit {
         return level;
     }
 
-    public void setLevel(int level) {
+    protected void setLevel(int level) {
         this.level = level;
     }
 
@@ -99,7 +104,7 @@ public abstract class Unit {
         return baseStr;
     }
 
-    public void setBaseStr(int baseStr) {
+    protected void setBaseStr(int baseStr) {
         this.baseStr = baseStr;
     }
 
@@ -107,7 +112,7 @@ public abstract class Unit {
         return baseDex;
     }
 
-    public void setBaseDex(int baseDex) {
+    protected void setBaseDex(int baseDex) {
         this.baseDex = baseDex;
     }
 
@@ -115,7 +120,7 @@ public abstract class Unit {
         return baseInt;
     }
 
-    public void setBaseInt(int baseInt) {
+    protected void setBaseInt(int baseInt) {
         this.baseInt = baseInt;
     }
 
@@ -123,7 +128,7 @@ public abstract class Unit {
         return baseWis;
     }
 
-    public void setBaseWis(int baseWis) {
+    protected void setBaseWis(int baseWis) {
         this.baseWis = baseWis;
     }
 
@@ -131,7 +136,7 @@ public abstract class Unit {
         return baseCon;
     }
 
-    public void setBaseCon(int baseCon) {
+    protected void setBaseCon(int baseCon) {
         this.baseCon = baseCon;
     }
 
@@ -139,15 +144,15 @@ public abstract class Unit {
         return baseLuck;
     }
 
-    public void setBaseLuck(int baseLuck) {
+    protected void setBaseLuck(int baseLuck) {
         this.baseLuck = baseLuck;
     }
 
-    public int getCurrentHp() {
+    private int getCurrentHp() {
         return currentHp;
     }
 
-    public void setCurrentHp(int currentHp) {
+    protected void setCurrentHp(int currentHp) {
         this.currentHp = currentHp;
     }
 
@@ -155,7 +160,7 @@ public abstract class Unit {
         return currentMana;
     }
 
-    public void setCurrentMana(int currentMana) {
+    protected void setCurrentMana(int currentMana) {
         this.currentMana = currentMana;
     }
 
@@ -163,7 +168,7 @@ public abstract class Unit {
         return maxHp;
     }
 
-    public void setMaxHp(int maxHp) {
+    protected void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
     }
 
@@ -171,7 +176,7 @@ public abstract class Unit {
         return maxMana;
     }
 
-    public void setMaxMana(int maxMana) {
+    protected void setMaxMana(int maxMana) {
         this.maxMana = maxMana;
     }
 
@@ -179,7 +184,7 @@ public abstract class Unit {
         return physicalAttack;
     }
 
-    public void setPhysicalAttack(float physicalAttack) {
+    protected void setPhysicalAttack(float physicalAttack) {
         this.physicalAttack = physicalAttack;
     }
 
@@ -187,7 +192,7 @@ public abstract class Unit {
         return physicalDenfense;
     }
 
-    public void setPhysicalDenfense(float physicalDenfense) {
+    protected void setPhysicalDenfense(float physicalDenfense) {
         this.physicalDenfense = physicalDenfense;
     }
 
@@ -195,7 +200,7 @@ public abstract class Unit {
         return magicalAttack;
     }
 
-    public void setMagicalAttack(float magicalAttack) {
+    protected void setMagicalAttack(float magicalAttack) {
         this.magicalAttack = magicalAttack;
     }
 
@@ -203,7 +208,7 @@ public abstract class Unit {
         return magicalDefense;
     }
 
-    public void setMagicalDefense(float magicalDefense) {
+    protected void setMagicalDefense(float magicalDefense) {
         this.magicalDefense = magicalDefense;
     }
 
@@ -211,7 +216,7 @@ public abstract class Unit {
         return accuracy;
     }
 
-    public void setAccuracy(float accuracy) {
+    protected void setAccuracy(float accuracy) {
         this.accuracy = accuracy;
     }
 
@@ -219,7 +224,7 @@ public abstract class Unit {
         return dodgeChance;
     }
 
-    public void setDodgeChance(float dodgeChance) {
+    protected void setDodgeChance(float dodgeChance) {
         this.dodgeChance = dodgeChance;
     }
 
@@ -227,7 +232,7 @@ public abstract class Unit {
         return criticalChance;
     }
 
-    public void setCriticalChance(float criticalChance) {
+    protected void setCriticalChance(float criticalChance) {
         this.criticalChance = criticalChance;
     }
 
@@ -236,7 +241,7 @@ public abstract class Unit {
         return unitName;
     }
 
-    public void setUnitName(String unitName) {
+    protected void setUnitName(String unitName) {
         this.unitName = unitName;
     }
 
@@ -244,7 +249,11 @@ public abstract class Unit {
         return criticalDefense;
     }
 
-    public void setCriticalDefense(float criticalDefense) {
+    protected void setCriticalDefense(float criticalDefense) {
         this.criticalDefense = criticalDefense;
+    }
+
+    protected ArrayList<Item> getInventory() {
+        return inventory;
     }
 }

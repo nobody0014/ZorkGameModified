@@ -92,18 +92,14 @@ Item Classes:
 -Equipment class (abstract):
 	-exteneded from item cus u know... sellable/buyable/dropable/etc
 	-Give stats/effect to player
--Weapon class:
-	-extended from equipment
-		-Took up the weapon slot in player
-	-Equipable when met with stat
--Glove Class
-	-Same as weapon except for the slot
--Armor Class
-	-Same as weapon except for the slot
--Pants Class
-	-Same as weapon except for the slot
--Shoe Class
-	-Same as weapon except for the slot
+	-Have type: as enum --> this is so that we dont have to have so many classes
+		-Weapon 
+		-Glove
+		-Armor
+		-Pants
+		-Shoe
+
+
 -Consumable Class:
 	-extended from item class
 		-Look do i really have to write much more other than because it made sense?

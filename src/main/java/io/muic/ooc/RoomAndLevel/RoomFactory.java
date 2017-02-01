@@ -5,7 +5,7 @@ package io.muic.ooc.RoomAndLevel;
  */
 public class RoomFactory {
     public static Room createHubRoom(){
-        Room room = new Room();
+        Room room = new Room(0,0);
         //TODO: Add NPC
         return room;
     }

@@ -1,20 +1,26 @@
 package io.muic.ooc.MainLoop;
 
-import io.muic.ooc.CommandParser;
-
 import java.util.Scanner;
 
 /**
  * Created by wit on 1/12/2017 AD.
  */
 public class ZorkGame {
-    public void main(String[] args){
+    public static void main(String[] args){
 
         Scanner cin = new Scanner(System.in);
-        ZorkRunner zorkRunner = new ZorkRunner();
+
+        System.out.println("Welcome to Zork the Game");
+
+        System.out.println("Please enter your name: ");
+        String name = cin.nextLine();
+        System.out.println("------------------------");
+
+        ZorkRunner zorkRunner = new ZorkRunner(name);
+
         while (true){
             String nextLine = cin.nextLine();
-            if (zorkRunner.executeCommand(nextLine.split(" "))){
+            if (!zorkRunner.executeCommand(nextLine.split(" "))){
                 break;
             }
         }
