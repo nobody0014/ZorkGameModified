@@ -6,16 +6,19 @@ package io.muic.ooc.RoomAndLevel;
 public class Level {
     private Room[][] rooms;
 
-    private String roomsName;
+    private int level;
 
     private int playerX;
     private int playerY;
     private int size;
 
-    public Level(int size, String roomName){
+    private String levelName;
+
+    public Level(int size, String levelName, int level){
         this.size = size;
         rooms = new Room[size][size];
-        this.roomsName = roomName;
+        this.level = level;
+        this.levelName = levelName;
     }
 
     /**
@@ -38,6 +41,7 @@ public class Level {
     public Room getCurrentRoom(){
         return rooms[getPlayerX()][getPlayerY()];
     }
+
     public Room getSpecifiedRoom(int x, int y){
         return rooms[x][y];
     }
@@ -88,11 +92,27 @@ public class Level {
         this.playerY = playerY;
     }
 
-    public String getRoomsName() {
-        return roomsName;
-    }
-
     public int getSize() {
         return size;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 }

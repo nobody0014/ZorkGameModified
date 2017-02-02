@@ -3,8 +3,10 @@ package io.muic.ooc.Unit;
 import io.muic.ooc.Calculator.StatCalculator;
 import io.muic.ooc.Item.Equipment;
 import io.muic.ooc.Item.Item;
+import io.muic.ooc.Quest.Quest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by wit on 1/12/2017 AD.
@@ -24,6 +26,9 @@ public class Player extends Unit {
     private int extraCon = 0;
     private int extraLuck = 0;
 
+    private ArrayList<Quest> currentQuests = new ArrayList<>();
+    private ArrayList<Quest> completedQuests = new ArrayList<>();
+
     private Equipment[] equipments = new Equipment[3];
 
     public Player(String name){
@@ -37,6 +42,8 @@ public class Player extends Unit {
         setBaseDex(5);
         setCurrentExp(0);
         updateStatus();
+        fillHP();
+        fillMana();
     }
 
 
@@ -49,30 +56,12 @@ public class Player extends Unit {
         setMaxExp(StatCalculator.calculateMaxExp(getLevel()));
     }
 
-    /**
-     * usually will be called by others
-     * @param expGain
-     */
-    public void increaseExp(int expGain){
-        setCurrentExp(getCurrentExp() + expGain);
-        if (getCurrentExp() >= getMaxExp()){
-            setCurrentExp(getCurrentExp() - getMaxExp());
-            levelUp();
-            //Print level up
-        }
-    }
 
 
-    /**
-     * increase level, increase stat points, refill hp and mana
-     */
-    private void levelUp(){
-        setLevel(getLevel()+1);
-        setCurrentHp(getMaxHp());
-        setCurrentMana(getMaxMana());
-        setStatPoints(getStatPoints()+10);
-    }
 
+
+
+    //Equipment
     /**
      * take item name and then used
      * @param itemName
@@ -90,7 +79,6 @@ public class Player extends Unit {
         }
         return success;
     }
-
     /**
      * Overloaded version of equip.. this time using the arrangement of inverntory
      * @param inventorySlot
@@ -109,6 +97,39 @@ public class Player extends Unit {
     }
 
 
+
+    //Quest Doing
+    public void addNewQuest(Quest q){
+        this.currentQuests.add(q);
+    }
+    public void completeQuest(Quest q){
+        this.currentQuests.remove(q);
+        this.completedQuests.add(q);
+    }
+
+
+    //Leveling
+    /**
+     * usually will be called by others
+     * @param expGain
+     */
+    public void gainExp(int expGain){
+        setCurrentExp(getCurrentExp() + expGain);
+        if (getCurrentExp() >= getMaxExp()){
+            setCurrentExp(getCurrentExp() - getMaxExp());
+            levelUp();
+            //Print level up
+        }
+    }
+    /**
+     * increase level, increase stat points, refill hp and mana
+     */
+    private void levelUp(){
+        setLevel(getLevel()+1);
+        setCurrentHp(getMaxHp());
+        setCurrentMana(getMaxMana());
+        setStatPoints(getStatPoints()+10);
+    }
     /**
      * place equipment in the desired slot and return the equipment that was replaced --> null if there's none
      * @param equipment
@@ -124,6 +145,12 @@ public class Player extends Unit {
             addItemToInventory(toReturn);
         }
         equipments[slot] = equipment;
+    }
+
+
+    @Override
+    public void printInformation(){
+        super.printInformation();
     }
 
 

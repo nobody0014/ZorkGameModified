@@ -65,10 +65,30 @@ public abstract class Unit {
         }
     }
 
+    public void fillHP(){
+        setCurrentHp(getMaxHp());
+    }
+
+    public void fillMana(){
+        setCurrentHp(getMaxMana());
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
+
+        if (object != null && object instanceof Unit) {
+            sameSame = this.unitName.equals(((Unit) object).unitName);
+        }else if (object != null && object instanceof String){
+            sameSame = this.unitName.equals((String) object);
+        }
+        return sameSame;
+    }
+
 
     //Called when there's a change in level or change in base stat, it will calculate other stat that in used in battle
     public void updateStatus() {
-
         setPhysicalAttack(StatCalculator.calculatePhysicalAttack(getBaseStr(), getBaseDex()));
         setPhysicalDenfense(StatCalculator.calculatePhysicalDefense(getBaseStr(), getBaseCon()));
         setMagicalAttack(StatCalculator.calculateMagicalAttack(getBaseInt(), getBaseDex()));
@@ -79,6 +99,14 @@ public abstract class Unit {
         setMaxHp(StatCalculator.calculateMaxHp(getBaseStr(),getBaseCon()));
         setMaxMana(StatCalculator.calculateMaxMana(getBaseInt(),getBaseWis()));
     }
+
+    public void printInformation(){
+        System.out.println("Unit name: " + getUnitName());
+        System.out.println("Current Level: " + getLevel());
+        System.out.println("Current HP: " + getCurrentHp() + "/" + getMaxHp());
+        System.out.println("Current Mana: " + getCurrentMana() + "/" + getMaxMana());
+    }
+
 
     public void addItemToInventory(Item item){
         getInventory().add(item);
@@ -253,7 +281,9 @@ public abstract class Unit {
         this.criticalDefense = criticalDefense;
     }
 
-    protected ArrayList<Item> getInventory() {
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
+
+
 }

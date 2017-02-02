@@ -1,5 +1,6 @@
 package io.muic.ooc.Item;
 
+
 import java.util.Enumeration;
 
 /**
@@ -14,5 +15,18 @@ public abstract class Item {
 
     public String getItemName() {
         return itemName;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
+
+        if (object != null && object instanceof Item) {
+            sameSame = this.itemName.equals (((Item) object).itemName);
+        }else if (object != null && object instanceof String){
+            sameSame = this.itemName.equals((String) object);
+        }
+        return sameSame;
     }
 }

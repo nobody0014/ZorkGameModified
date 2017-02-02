@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public abstract class NPC extends Unit{
     private boolean isAggro = false; //Will attack the player automatically if it is
+    private int exp;
 
     public NPC(String name){
         super(name);
@@ -19,5 +20,24 @@ public abstract class NPC extends Unit{
     //Dropping loots
     public ArrayList<Item> dropLoots(){
         return getInventory();
+    }
+
+
+
+
+    public boolean isAggro() {
+        return isAggro;
+    }
+
+    public void setAggro(boolean aggro) {
+        isAggro = aggro;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
     }
 }
