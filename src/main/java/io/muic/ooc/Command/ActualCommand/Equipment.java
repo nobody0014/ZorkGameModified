@@ -1,6 +1,7 @@
 package io.muic.ooc.Command.ActualCommand;
 
 import io.muic.ooc.Command.Command;
+import io.muic.ooc.Item.EquipmentFactory;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.RoomAndLevel.Room;
 import io.muic.ooc.Unit.Player;
@@ -17,21 +18,18 @@ public class Equipment extends Command {
      */
     @Override
     public boolean execute(){
-        Level currentLevel = getCurrentLevel();
-        Room currentRoom = currentLevel.getCurrentRoom();
         Player player = getPlayer();
-        ArrayList<String> args = getArguments();
-
         for (int i = 0; i< player.getEquipments().length; i++){
-            printDetailedEquipment(player.getEquipments()[i]);
+            io.muic.ooc.Item.Equipment eq = player.getEquipments()[i];
+            if (player.getEquipments()[i] != null){
+                System.out.println(eq.getEquipment_type() + ": " + eq.getItemName() + " ,strength: "  + eq.getExtraStr()
+                        + " ,constitution: "  + eq.getExtraCon() + " ,dexterity: "  + eq.getExtraDex() + " ,luck: "  + eq.getExtraLuck()
+                        + " ,intelligence: "  + eq.getExtraStr() + " ,wisdom: " + eq.getExtraWis());
+            }else {
+                System.out.println(EquipmentFactory.INTEGER_EQUIPMENT_TYPE_HASH_MAP.get(i) + ": None");
+            }
         }
         return true;
-    }
-
-    public void printDetailedEquipment(io.muic.ooc.Item.Equipment eq){
-        System.out.println(eq.getEquipment_type() + ": " + eq.getItemName() + " ,strength: "  + eq.getExtraStr()
-        + " ,constitution: "  + eq.getExtraCon() + " ,dexterity: "  + eq.getExtraDex() + " ,luck: "  + eq.getExtraLuck()
-                + " ,intelligence: "  + eq.getExtraStr() + " ,wisdom: " + eq.getExtraWis());
     }
 
     public void help(){

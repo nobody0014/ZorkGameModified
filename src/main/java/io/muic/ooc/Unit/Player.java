@@ -346,5 +346,7 @@ public class Player extends Unit {
     public void setEquipments(Equipment[] equipments) {
         this.equipments = equipments;
     }
+
+
 }
 

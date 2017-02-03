@@ -13,22 +13,36 @@ import java.util.HashMap;
 public class CommandParser {
     public static HashMap<String, Command> commandsAvailable = new HashMap<String, Command>(){
         {
-            put("attack",new Attack()); //done
-            put("buy",new Buy()); //need to implement shop first
-            put("defend",new Defend()); //done
-            put("equipment",new Equipment()); //done
-            put("go",new Go()); //next
-            put("help",new Help()); //once all are done
-            put("inventory",new Inventory()); // after go
-            put("look",new Look()); //not going to be implemented
-            put("map",new Map()); //after go
-            put("quit",new Quit()); //done
-            put("room",new RoomInformation()); //after map
-            put("roominformation",new RoomInformation()); //after map
-            put("sell",new Sell()); //need to implement shop
-            put("stat",new Stat()); //after map
-            put("talk",new Talk()); //need to implement proper npc first
-            put("use",new Use()); //after map
+            //DONE: Attack, Defend, Equipment, Map, Quit, RoomInformation, Stat, EquipItem, PickUpItem
+            //NEED FIX: DamageCalculator
+            //NOT DONE: Talk, Sell, Inventory, Help, Go
+            //NOT GOING TO IMPLEMENT: Look
+
+            put("attack",new Attack());
+            put("defend",new Defend());
+
+            put("buy",new Buy());
+            put("sell",new Sell());
+            put("use",new Use());
+
+            put("go",new Go());
+            put("talk",new Talk());
+
+            put("stat",new Stat());
+            put("map",new Map());
+            put("inventory",new Inventory());
+            put("room",new RoomInformation());
+            put("roominformation",new RoomInformation());
+
+            put("equip", new EquipItem());
+            put("equipment",new Equipment());
+
+            put("take", new PickUpItem());
+            put("pick", new PickUpItem());
+
+            put("help",new Help());
+            put("quit",new Quit());
+            put("look",new Look());
         }
     };
 

@@ -115,4 +115,10 @@ public class Level {
     public void setLevelName(String levelName) {
         this.levelName = levelName;
     }
+
+
+
+    public Room[][] getRooms() {
+        return rooms;
+    }
 }

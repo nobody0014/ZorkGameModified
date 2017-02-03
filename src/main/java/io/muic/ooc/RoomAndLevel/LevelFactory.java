@@ -5,7 +5,7 @@ package io.muic.ooc.RoomAndLevel;
  */
 public class LevelFactory {
     public static Level createHubLevel(){
-        Level hubLevel = new Level(1,0);
+        Level hubLevel = new Level(1,"hub",0);
         hubLevel.addRoom(0,0,RoomFactory.createHubRoom());
         hubLevel.setPlayerX(0);
         hubLevel.setPlayerY(0);
@@ -13,7 +13,7 @@ public class LevelFactory {
     }
 
     public static Level createFirstLevelFirstDungeon(){
-        Level firstLevel = new Level(1,0);
+        Level firstLevel = new Level(1,"forest",0);
         firstLevel.fillAllRooms();
         firstLevel.addRoom(0,0, new Room(0,0));
         firstLevel.addRoom(1,0, new Room(1,0));

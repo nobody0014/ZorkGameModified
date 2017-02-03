@@ -176,7 +176,7 @@ public abstract class Unit {
         this.baseLuck = baseLuck;
     }
 
-    private int getCurrentHp() {
+    public int getCurrentHp() {
         return currentHp;
     }
 
