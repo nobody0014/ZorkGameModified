@@ -9,6 +9,8 @@ To appease the monster, your grandfather has sacrificed many items and heirlooms
 Now that you are ready and have taken over the town, you are tasked with the quest to bring the town 
 back to former glory.
 
+Spoiler: 
+most of these are not implemented because i bit more than i could chew. I deserve the bullshit here, sue me.
 
 Main Quests:
 Quest 1:
