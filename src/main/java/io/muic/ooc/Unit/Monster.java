@@ -8,7 +8,7 @@ import java.util.List;
 public class Monster extends NPC{
     private int rarity;
 
-    public Monster(String name, int str, int con, int intel, int wis, int dex, int luck, int rarity){
+    public Monster(String name, int str, int con, int intel, int wis, int dex, int luck, int rarity, int exp){
         super(name);
         setBaseStr(str);
         setBaseCon(con);
@@ -17,6 +17,7 @@ public class Monster extends NPC{
         setBaseDex(dex);
         setBaseLuck(luck);
         setRarity(rarity);
+        setExp(exp);
     }
 
     public int getRarity() {

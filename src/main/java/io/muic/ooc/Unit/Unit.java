@@ -89,7 +89,7 @@ public abstract class Unit {
         if (object != null && object instanceof Unit) {
             sameSame = this.unitName.equals(((Unit) object).unitName);
         }else if (object != null && object instanceof String){
-            sameSame = this.unitName.equals((String) object);
+            sameSame = this.unitName.equals(object);
         }
         return sameSame;
     }

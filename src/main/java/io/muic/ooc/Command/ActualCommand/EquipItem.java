@@ -16,11 +16,20 @@ public class EquipItem extends Command {
         List<Item> inventory  = player.getInventory();
         List<String> arguments  = getArguments();
         if (arguments.size() > 0){
-            if (inventory.contains(arguments.get(0))){
-                player.equip(arguments.get(0));
-                System.out.println("You have equipped " + arguments.get(0));
-            }else {
-                System.out.println("You did not have the item");
+
+            try{
+                Integer slot = Integer.parseInt(arguments.get(0));
+                if (slot < inventory.size() && slot >= 0){
+                    Item item = inventory.get(slot);
+                    inventory.remove(item);
+                    player.addItemToInventory(item);
+                    player.equip(arguments.get(0));
+                    System.out.println("You have equipped " + item.getItemName());
+                }else {
+                    System.out.println("You did not have the item");
+                }
+            }catch (Exception e){
+                System.out.println("The argument for equipitem has to be the number that is shown in the inventory.");
             }
         }else {
             System.out.println("Did not specfied the item to equip");
@@ -28,6 +37,6 @@ public class EquipItem extends Command {
         return true;
     }
     public void help(){
-        System.out.println("equipItem <equipment name> -- equip the equipment in the inventory");
+        System.out.println("equipItem <item slot in the inventory> -- equip the equipment in the inventory");
     }
 }

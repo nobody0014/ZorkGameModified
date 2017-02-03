@@ -29,25 +29,28 @@ public class MonsterFactory {
     };
 
     public static Monster createGoblin(){
-        Monster monster = new Monster("goblin",2,2,2,2,2,2,1);
+        Monster monster = new Monster("goblin",2,2,2,2,2,2,1,3);
         monster.setAggro(true);
-
+        monster.updateStatus();
         return monster;
     }
 
     public static Monster createWolf(){
-        Monster monster = new Monster("wolf",2,0,2,2,4,2,1);
+        Monster monster = new Monster("wolf",2,0,2,2,4,2,1,4);
         monster.setAggro(true);
+        monster.updateStatus();
         return monster;
     }
     public static Monster createOrc(){
-        Monster monster = new Monster("orc",4,4,0,0,2,3,2);
+        Monster monster = new Monster("orc",4,4,0,0,2,3,2,7);
         monster.setAggro(true);
+        monster.updateStatus();
         return monster;
     }
     public static Monster createElf(){
-        Monster monster = new Monster("elf",2,2,2,2,4,4,1);
+        Monster monster = new Monster("elf",2,2,2,2,4,4,1,4);
         monster.setAggro(true);
+        monster.updateStatus();
         return monster;
     }
 

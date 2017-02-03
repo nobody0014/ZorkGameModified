@@ -22,11 +22,11 @@ public class RoomFactory {
     public static Room createForestRoom(int x, int y){
         Room room = new Room(x,y);
         Random rand  = new Random();
-        List<Monster> monsters = MonsterFactory.createMonsters(rand.nextInt(3));
+        List<Monster> monsters = MonsterFactory.createMonsters(rand.nextInt(4));
         for (Monster mon: monsters){
             room.addNPC(mon);
         }
-        List<Equipment> equipments = EquipmentFactory.createEquipments(2);
+        List<Equipment> equipments = EquipmentFactory.createEquipments(3);
         for (Equipment equipment: equipments){
             room.addItem(equipment);
         }

@@ -11,10 +11,6 @@ import io.muic.ooc.Unit.Player;
  * Created by wit on 1/12/2017 AD.
  */
 public class ZorkRunner {
-    //Main hub--> probably the best i can do for it... cant afford to be throwing it everywhere
-    public static Level hubLevel = LevelFactory.createHubLevel();
-
-
     //Starting location and rooms
     private Player player;
 
@@ -22,7 +18,7 @@ public class ZorkRunner {
 
     public ZorkRunner(String name){
         player = new Player(name);
-        currentLevel = hubLevel;
+        currentLevel = LevelFactory.hub;
         Command cmd = new RoomInformation();
         cmd.setPlayer(player);
         cmd.setCurrentLevel(currentLevel);
@@ -41,14 +37,6 @@ public class ZorkRunner {
         setCurrentLevel(cmd.getCurrentLevel());
         ZorkView.printFinishLine();
         return toReturn;
-    }
-
-    public static Level getHubLevel() {
-        return hubLevel;
-    }
-
-    public static void setHubLevel(Level hubLevel) {
-        ZorkRunner.hubLevel = hubLevel;
     }
 
     public Player getPlayer() {

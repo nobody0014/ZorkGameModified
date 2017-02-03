@@ -25,7 +25,7 @@ public abstract class Item {
         if (object != null && object instanceof Item) {
             sameSame = this.itemName.equals (((Item) object).itemName);
         }else if (object != null && object instanceof String){
-            sameSame = this.itemName.equals((String) object);
+            sameSame = this.itemName.equals(object);
         }
         return sameSame;
     }

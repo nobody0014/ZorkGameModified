@@ -129,7 +129,7 @@ public class Attack extends Command{
     }
 
     public void printGainExp(Player attacker, NPC defender){
-        System.out.println(attacker.getUnitName() + " gain " + defender.getExp() + " from " + defender.getUnitName());
+        System.out.println(attacker.getUnitName() + " gain " + defender.getExp() + " exp from " + defender.getUnitName());
     }
 
     public void printGainLoot(Unit defender){

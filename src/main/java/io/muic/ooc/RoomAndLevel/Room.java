@@ -38,7 +38,9 @@ public class Room {
     }
 
     public void addExit(String direction, Room room){
-        getExits().putIfAbsent(direction,room);
+        if (room != null){
+            getExits().putIfAbsent(direction,room);
+        }
     }
 
     public void addLevelExit(String desiredDestination, Level level){

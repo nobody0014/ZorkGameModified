@@ -21,7 +21,7 @@ public class StatCalculator {
     }
 
     public static int calculateAccuracy(int dex, int luck) {
-        return (int) Math.ceil(dex + 0.5*luck + 5);
+        return (int) Math.ceil(dex + 0.5*luck + 80);
     }
 
     public static int calculateDodgeChance(int dex, int luck) {
@@ -36,9 +36,6 @@ public class StatCalculator {
         return (int) Math.ceil(con + 0.5*str + 100);
     }
 
-    public static int calculateMonsterMaxHp(int str, int con) {
-        return (int) Math.ceil(con + 0.5*str + 50);
-    }
 
     public static int calculateMaxMana(int intel, int wis) {
         return (int) Math.ceil(wis + 0.5*intel + 50);

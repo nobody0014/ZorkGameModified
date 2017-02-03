@@ -6,7 +6,13 @@ import java.util.HashMap;
  * Created by wit on 1/30/2017 AD.
  */
 public class LevelFactory {
-    public static Level hub = createHubLevel();
+    public static Level hub = new Level(1,"hub",0){
+        {
+            addRoom(0,0,RoomFactory.createHubRoom());
+            setPlayerX(0);
+            setPlayerY(0);
+        }
+    };
 
     public static HashMap<String, Level> levelHashMap = new HashMap<String, Level>(){
         {
@@ -15,28 +21,22 @@ public class LevelFactory {
         }
     };
 
-
-    public static Level createHubLevel(){
-        Level hubLevel = new Level(1,"hub",0);
-        hubLevel.addRoom(0,0,RoomFactory.createHubRoom());
-        hubLevel.setPlayerX(0);
-        hubLevel.setPlayerY(0);
-        return hubLevel;
-    }
-
     public static Level createFirstLevelFirstDungeon(){
         Level firstLevel = new Level(4,"forest",0);
         firstLevel.fillAllRooms();
         firstLevel.addRoom(0,0, RoomFactory.createForestRoom(0,0));
-        firstLevel.addRoom(1,0, RoomFactory.createForestRoom(1,0));
-        firstLevel.addRoom(2,0, RoomFactory.createForestRoom(2,0));
-        firstLevel.addRoom(3,0, RoomFactory.createForestRoom(3,0));
         firstLevel.addRoom(0,1, RoomFactory.createForestRoom(0,1));
         firstLevel.addRoom(0,2, RoomFactory.createForestRoom(0,2));
         firstLevel.addRoom(0,3, RoomFactory.createForestRoom(0,3));
+
+        firstLevel.addRoom(1,0, RoomFactory.createForestRoom(1,0));
         firstLevel.addRoom(1,1, RoomFactory.createForestRoom(1,1));
         firstLevel.addRoom(1,2, RoomFactory.createForestRoom(1,2));
+
+        firstLevel.addRoom(2,0, RoomFactory.createForestRoom(2,0));
         firstLevel.addRoom(2,2, RoomFactory.createForestRoom(2,2));
+
+        firstLevel.addRoom(3,0, RoomFactory.createForestRoom(3,0));
         firstLevel.addRoom(3,1, RoomFactory.createForestRoom(3,1));
         firstLevel.addRoom(3,2, RoomFactory.createForestRoom(3,2));
         firstLevel.addRoom(3,3, RoomFactory.createForestRoom(3,3));
@@ -47,48 +47,47 @@ public class LevelFactory {
         firstLevel.getSpecifiedRoom(0,0).addLevelExit("hub", LevelFactory.hub);
 
         //second room 0,1
-        firstLevel.getSpecifiedRoom(0,1).addExit("south",firstLevel.getSpecifiedRoom(0,0));
+        firstLevel.getSpecifiedRoom(0,1).addExit("north",firstLevel.getSpecifiedRoom(0,0));
         firstLevel.getSpecifiedRoom(0,1).addExit("south",firstLevel.getSpecifiedRoom(1,0));
 
         //0,2
         firstLevel.getSpecifiedRoom(0,2).addExit("east",firstLevel.getSpecifiedRoom(1,2));
-        firstLevel.getSpecifiedRoom(0,2).addExit("east",firstLevel.getSpecifiedRoom(0,3));
-        firstLevel.getSpecifiedRoom(0,2).addExit("east",firstLevel.getSpecifiedRoom(1,2));
+        firstLevel.getSpecifiedRoom(0,2).addExit("south",firstLevel.getSpecifiedRoom(0,3));
 
         //0,3
-        firstLevel.getSpecifiedRoom(0,3).addExit("east",firstLevel.getSpecifiedRoom(0,2));
+        firstLevel.getSpecifiedRoom(0,3).addExit("north",firstLevel.getSpecifiedRoom(0,2));
 
         //1,0
-        firstLevel.getSpecifiedRoom(1,0).addExit("east",firstLevel.getSpecifiedRoom(0,0));
+        firstLevel.getSpecifiedRoom(1,0).addExit("west",firstLevel.getSpecifiedRoom(0,0));
         firstLevel.getSpecifiedRoom(1,0).addExit("east",firstLevel.getSpecifiedRoom(2,0));
 
         //2,0
-        firstLevel.getSpecifiedRoom(2,0).addExit("east",firstLevel.getSpecifiedRoom(1,0));
+        firstLevel.getSpecifiedRoom(2,0).addExit("west",firstLevel.getSpecifiedRoom(1,0));
         firstLevel.getSpecifiedRoom(2,0).addExit("east",firstLevel.getSpecifiedRoom(3,0));
 
         //3,0
-        firstLevel.getSpecifiedRoom(3,0).addExit("east",firstLevel.getSpecifiedRoom(2,0));
-        firstLevel.getSpecifiedRoom(3,0).addExit("east",firstLevel.getSpecifiedRoom(3,1));
+        firstLevel.getSpecifiedRoom(3,0).addExit("west",firstLevel.getSpecifiedRoom(2,0));
+        firstLevel.getSpecifiedRoom(3,0).addExit("south",firstLevel.getSpecifiedRoom(3,1));
 
         //3,1
-        firstLevel.getSpecifiedRoom(3,1).addExit("east",firstLevel.getSpecifiedRoom(3,0));
-        firstLevel.getSpecifiedRoom(3,1).addExit("east",firstLevel.getSpecifiedRoom(3,2));
+        firstLevel.getSpecifiedRoom(3,1).addExit("north",firstLevel.getSpecifiedRoom(3,0));
+        firstLevel.getSpecifiedRoom(3,1).addExit("south",firstLevel.getSpecifiedRoom(3,2));
 
         //3,2
-        firstLevel.getSpecifiedRoom(3,2).addExit("east",firstLevel.getSpecifiedRoom(3,3));
-        firstLevel.getSpecifiedRoom(3,2).addExit("east",firstLevel.getSpecifiedRoom(2,2));
+        firstLevel.getSpecifiedRoom(3,2).addExit("south",firstLevel.getSpecifiedRoom(3,3));
+        firstLevel.getSpecifiedRoom(3,2).addExit("west",firstLevel.getSpecifiedRoom(2,2));
 
         //3,3
-        firstLevel.getSpecifiedRoom(3,3).addExit("east",firstLevel.getSpecifiedRoom(3,2));
+        firstLevel.getSpecifiedRoom(3,3).addExit("north",firstLevel.getSpecifiedRoom(3,2));
         firstLevel.getSpecifiedRoom(3,3).addLevelExit("hub", LevelFactory.hub);
 
         //1,2
-        firstLevel.getSpecifiedRoom(1,2).addExit("east",firstLevel.getSpecifiedRoom(0,2));
+        firstLevel.getSpecifiedRoom(1,2).addExit("west",firstLevel.getSpecifiedRoom(0,2));
         firstLevel.getSpecifiedRoom(1,2).addExit("east",firstLevel.getSpecifiedRoom(2,2));
 
         //2,2
         firstLevel.getSpecifiedRoom(2,2).addExit("east",firstLevel.getSpecifiedRoom(3,2));
-        firstLevel.getSpecifiedRoom(2,2).addExit("east",firstLevel.getSpecifiedRoom(1,2));
+        firstLevel.getSpecifiedRoom(2,2).addExit("west",firstLevel.getSpecifiedRoom(1,2));
 
 
 
