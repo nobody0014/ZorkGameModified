@@ -4,15 +4,20 @@ import io.muic.ooc.Skill.Skill;
 import io.muic.ooc.Unit.Player;
 import io.muic.ooc.Unit.Unit;
 
+import java.util.Random;
+
 /**
  * Created by wit on 1/24/2017 AD.
  */
 public class DamageCalculator {
-    public static int calculateDamage(Unit attacker, Player defender){
-        return 0;
-    }
+    static Random rn  = new Random();
 
-    public static int calculateDamage(Player attacker, Unit defender){
+    public static int calculateDamage(Unit attacker, Unit defender){
+        attacker.updateStatus();
+        defender.updateStatus();
+        float possibleDamage = attacker.getPhysicalAttack() - defender.getPhysicalDenfense();
+        float possibleCrit  = attacker.getCriticalChance() - attacker.getCriticalDefense();
+        float possibleDodge = attacker.getAccuracy() - defender.getDodgeChance();
         return 0;
     }
 }

@@ -13,22 +13,22 @@ import java.util.HashMap;
 public class CommandParser {
     public static HashMap<String, Command> commandsAvailable = new HashMap<String, Command>(){
         {
-            put("attack",new Attack());
-            put("buy",new Buy());
-            put("defend",new Defend());
-            put("equipment",new Equipment());
-            put("go",new Go());
-            put("help",new Help());
-            put("inventory",new Inventory());
-            put("look",new Look());
-            put("map",new Map());
-            put("quit",new Quit());
-            put("room",new RoomInformation());
-            put("roominformation",new RoomInformation());
-            put("sell",new Sell());
-            put("stat",new Stat());
-            put("talk",new Talk());
-            put("use",new Use());
+            put("attack",new Attack()); //done
+            put("buy",new Buy()); //need to implement shop first
+            put("defend",new Defend()); //done
+            put("equipment",new Equipment()); //done
+            put("go",new Go()); //next
+            put("help",new Help()); //once all are done
+            put("inventory",new Inventory()); // after go
+            put("look",new Look()); //not going to be implemented
+            put("map",new Map()); //after go
+            put("quit",new Quit()); //done
+            put("room",new RoomInformation()); //after map
+            put("roominformation",new RoomInformation()); //after map
+            put("sell",new Sell()); //need to implement shop
+            put("stat",new Stat()); //after map
+            put("talk",new Talk()); //need to implement proper npc first
+            put("use",new Use()); //after map
         }
     };
 

@@ -85,9 +85,7 @@ public class Attack extends Command{
      * @param npc
      */
     public void battleEvaluation(Player player, NPC npc){
-        int damageDelt = DamageCalculator.calculateDamage(player,npc);
-        npc.loseHp(damageDelt);
-        printDealDamage(player, npc, damageDelt);
+        battleResult(player,npc);
 
         if (!npc.isAggro()){
             npc.setAggro(true);
@@ -106,16 +104,28 @@ public class Attack extends Command{
     public void retaliation(Player player, Room currentRoom){
         for (NPC npc: currentRoom.getNpcs()){
             if (npc.isAggro()){
-                int damageDelt = DamageCalculator.calculateDamage(player,npc);
-                player.loseHp(damageDelt);
-                printDealDamage(npc,player,damageDelt);
+                battleResult(npc,player);
             }
+        }
+    }
+
+    public void battleResult(Unit attacker, Unit defender){
+        int damageDelt = DamageCalculator.calculateDamage(attacker,defender);
+        if (damageDelt > -1){
+            defender.loseHp(damageDelt);
+            printDealDamage(attacker,defender,damageDelt);
+        }else {
+            printMissAttack(attacker);
         }
     }
 
 
     public void printDealDamage(Unit attacker, Unit defender, int damageDelt){
         System.out.println(attacker.getUnitName() + " deal " + damageDelt + " to " + defender.getUnitName());
+    }
+
+    public void printMissAttack(Unit attacker){
+        System.out.println(attacker.getUnitName() + "'s attack miss");
     }
 
     public void printGainExp(Player attacker, NPC defender){

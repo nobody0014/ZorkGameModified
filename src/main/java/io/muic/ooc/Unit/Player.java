@@ -26,10 +26,15 @@ public class Player extends Unit {
     private int extraCon = 0;
     private int extraLuck = 0;
 
+    private int extraPhysicalAttack = 0;
+    private int extraPhysicalDefense = 0;
+    private int extraMagicalAttack = 0;
+    private int extraMagicalDefense = 0;
+
     private ArrayList<Quest> currentQuests = new ArrayList<>();
     private ArrayList<Quest> completedQuests = new ArrayList<>();
 
-    private Equipment[] equipments = new Equipment[3];
+    private Equipment[] equipments = new Equipment[5];
 
     public Player(String name){
         super(name);
@@ -52,7 +57,15 @@ public class Player extends Unit {
      */
     @Override
     public void updateStatus(){
-        super.updateStatus();
+        setPhysicalAttack(StatCalculator.calculatePhysicalAttack(getBaseStr(), getBaseDex(),getExtraPhysicalAttack()));
+        setPhysicalDenfense(StatCalculator.calculatePhysicalDefense(getBaseStr(), getBaseCon(),getExtraPhysicalDefense()));
+        setMagicalAttack(StatCalculator.calculateMagicalAttack(getBaseInt(), getBaseDex(),getExtraMagicalAttack()));
+        setMagicalDefense(StatCalculator.calculateMagicalDefense(getBaseInt(), getBaseCon(),getExtraMagicalDefense()));
+        setAccuracy(StatCalculator.calculateAccuracy(getBaseDex(),getBaseLuck()));
+        setDodgeChance(StatCalculator.calculateDodgeChance(getBaseDex(),getBaseLuck()));
+        setCriticalChance(StatCalculator.calculateCriticalChance(getBaseDex(),getBaseLuck()));
+        setMaxHp(StatCalculator.calculateMaxHp(getBaseStr(),getBaseCon()));
+        setMaxMana(StatCalculator.calculateMaxMana(getBaseInt(),getBaseWis()));
         setMaxExp(StatCalculator.calculateMaxExp(getLevel()));
     }
 
@@ -293,4 +306,45 @@ public class Player extends Unit {
     public int getStatPoints() {return statPoints;}
 
     public void setStatPoints(int statPoints) {this.statPoints = statPoints;}
+
+    public int getExtraPhysicalAttack() {
+        return extraPhysicalAttack;
+    }
+
+    public void setExtraPhysicalAttack(int extraPhysicalAttack) {
+        this.extraPhysicalAttack = extraPhysicalAttack;
+    }
+
+    public int getExtraPhysicalDefense() {
+        return extraPhysicalDefense;
+    }
+
+    public void setExtraPhysicalDefense(int extraPhysicalDefense) {
+        this.extraPhysicalDefense = extraPhysicalDefense;
+    }
+
+    public int getExtraMagicalAttack() {
+        return extraMagicalAttack;
+    }
+
+    public void setExtraMagicalAttack(int extraMagicalDamage) {
+        this.extraMagicalAttack = extraMagicalDamage;
+    }
+
+    public int getExtraMagicalDefense() {
+        return extraMagicalDefense;
+    }
+
+    public void setExtraMagicalDefense(int extraMagicalDefense) {
+        this.extraMagicalDefense = extraMagicalDefense;
+    }
+
+    public Equipment[] getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(Equipment[] equipments) {
+        this.equipments = equipments;
+    }
 }
+
