@@ -33,6 +33,6 @@ public class Equipment extends Command {
     }
 
     public void help(){
-        System.out.println("equipment --> give the current information of players current equipment");
+        System.out.println("equipment -- give the current information of players current equipment");
     }
 }

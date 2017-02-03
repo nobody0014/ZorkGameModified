@@ -15,4 +15,8 @@ public class Look extends Command {
     public boolean execute() {
         return true;
     }
+
+    public void help(){
+        System.out.println("look <target> -- not implemented");
+    }
 }

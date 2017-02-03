@@ -25,21 +25,21 @@ public class LevelFactory {
     }
 
     public static Level createFirstLevelFirstDungeon(){
-        Level firstLevel = new Level(1,"forest",0);
+        Level firstLevel = new Level(4,"forest",0);
         firstLevel.fillAllRooms();
-        firstLevel.addRoom(0,0, new Room(0,0));
-        firstLevel.addRoom(1,0, new Room(1,0));
-        firstLevel.addRoom(2,0, new Room(2,0));
-        firstLevel.addRoom(3,0, new Room(3,0));
-        firstLevel.addRoom(0,1, new Room(0,1));
-        firstLevel.addRoom(0,2, new Room(0,2));
-        firstLevel.addRoom(0,3, new Room(0,3));
-        firstLevel.addRoom(1,1, new Room(1,1));
-        firstLevel.addRoom(1,2, new Room(1,2));
-        firstLevel.addRoom(2,2, new Room(2,2));
-        firstLevel.addRoom(3,1, new Room(3,1));
-        firstLevel.addRoom(3,2, new Room(3,2));
-        firstLevel.addRoom(3,3, new Room(3,3));
+        firstLevel.addRoom(0,0, RoomFactory.createForestRoom(0,0));
+        firstLevel.addRoom(1,0, RoomFactory.createForestRoom(1,0));
+        firstLevel.addRoom(2,0, RoomFactory.createForestRoom(2,0));
+        firstLevel.addRoom(3,0, RoomFactory.createForestRoom(3,0));
+        firstLevel.addRoom(0,1, RoomFactory.createForestRoom(0,1));
+        firstLevel.addRoom(0,2, RoomFactory.createForestRoom(0,2));
+        firstLevel.addRoom(0,3, RoomFactory.createForestRoom(0,3));
+        firstLevel.addRoom(1,1, RoomFactory.createForestRoom(1,1));
+        firstLevel.addRoom(1,2, RoomFactory.createForestRoom(1,2));
+        firstLevel.addRoom(2,2, RoomFactory.createForestRoom(2,2));
+        firstLevel.addRoom(3,1, RoomFactory.createForestRoom(3,1));
+        firstLevel.addRoom(3,2, RoomFactory.createForestRoom(3,2));
+        firstLevel.addRoom(3,3, RoomFactory.createForestRoom(3,3));
 
         //first room 0,0
         firstLevel.getSpecifiedRoom(0,0).addExit("east",firstLevel.getSpecifiedRoom(1,0));

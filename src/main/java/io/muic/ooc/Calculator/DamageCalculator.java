@@ -18,6 +18,15 @@ public class DamageCalculator {
         float possibleDamage = attacker.getPhysicalAttack() - defender.getPhysicalDenfense();
         float possibleCrit  = attacker.getCriticalChance() - attacker.getCriticalDefense();
         float possibleDodge = attacker.getAccuracy() - defender.getDodgeChance();
-        return 0;
+        Random random = new Random();
+        if (possibleDodge > random.nextInt(100)){
+            return -1;
+        }else {
+            if (possibleCrit > random.nextInt(100)){
+                return (int)possibleDamage*3;
+            }else {
+                return (int)possibleDamage;
+            }
+        }
     }
 }

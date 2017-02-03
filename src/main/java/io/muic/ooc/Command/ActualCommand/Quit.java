@@ -17,4 +17,8 @@ public class Quit extends Command{
         boolean quitGame = !ZorkView.quitGame();
         return quitGame;
     }
+
+    public void help(){
+        System.out.println("quit -- quit the game");
+    }
 }

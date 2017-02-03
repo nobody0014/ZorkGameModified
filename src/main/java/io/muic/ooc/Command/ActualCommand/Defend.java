@@ -58,6 +58,6 @@ public class Defend extends Command{
     }
 
     public void help(){
-        System.out.println("Defend --> temporarily increase the defense of the upcoming attacks");
+        System.out.println("defend -- temporarily increase the defense of the upcoming attacks");
     }
 }

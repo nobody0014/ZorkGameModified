@@ -14,4 +14,9 @@ public class Buy extends Command{
 
         return true;
     }
+
+    public void help(){
+        System.out.println("buy <item> -- not implemented");
+    }
 }
+

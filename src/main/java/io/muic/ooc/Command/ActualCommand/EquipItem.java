@@ -27,4 +27,7 @@ public class EquipItem extends Command {
         }
         return true;
     }
+    public void help(){
+        System.out.println("equipItem <equipment name> -- equip the equipment in the inventory");
+    }
 }

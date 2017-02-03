@@ -32,4 +32,8 @@ public class PickUpItem extends Command {
         }
         return  true;
     }
+
+    public void help(){
+        System.out.println("pickup/take <item> -- take item (consumable/weapon... etc) in the current room");
+    }
 }

@@ -44,4 +44,8 @@ public class Map extends Command{
         System.out.println(toPrint);
         ZorkView.printFinishLine();
     }
+
+    public void help(){
+        System.out.println("map -- show the map of the current level");
+    }
 }

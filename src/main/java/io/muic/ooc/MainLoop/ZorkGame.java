@@ -20,6 +20,7 @@ public class ZorkGame {
         ZorkView.printFinishLine();
 
         ZorkRunner zorkRunner = new ZorkRunner(name);
+        ZorkView.printFinishLine();
 
         while (true){
             String command = cin.nextLine();
@@ -28,7 +29,7 @@ public class ZorkGame {
             if (!zorkRunner.executeCommand(cmd)){
                 break;
             }
-            ZorkView.printFinishLine();
+
         }
         System.out.println("Thank you for playing");
     }

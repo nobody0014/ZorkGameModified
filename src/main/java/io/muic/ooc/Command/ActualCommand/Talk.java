@@ -72,4 +72,8 @@ public class Talk extends Command{
             System.out.println("Quest " + newQuest.getQuestName() + " has been obtained.");
         }
     }
+
+    public void help(){
+        System.out.println("talk -- not implemented correctly");
+    }
 }

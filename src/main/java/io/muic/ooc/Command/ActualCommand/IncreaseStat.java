@@ -41,4 +41,8 @@ public class IncreaseStat extends Command {
         }
         return true;
     }
+
+    public void help(){
+        System.out.println("increasestat <stat name> -- lose 1 stat point for increasing 1 base stat of your choice");
+    }
 }

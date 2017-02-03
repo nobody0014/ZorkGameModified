@@ -16,19 +16,19 @@ public class CommandParser {
             //DONE: Attack,Defend,Equipment,Map,Quit,RoomInformation,Stat,EquipItem,PickUpItem,Go,Inventory,Use
             //IMPLEMENTING:
             //NEED FIX: DamageCalculator
-            //NOT DONE: Help,
-            //NOT GOING TO IMPLEMENT: Look,Buy,Sell
+            //NOT DONE: Help
+            //NOT GOING TO IMPLEMENT: Look,Buy,Sell, talk
 
 
             put("attack",new Attack());
             put("defend",new Defend());
 
-            put("buy",new Buy());
-            put("sell",new Sell());
+//            put("buy",new Buy());
+//            put("sell",new Sell());
             put("use",new Use());
 
             put("go",new Go());
-            put("talk",new Talk());
+//            put("talk",new Talk());
 
             put("stat",new Stat());
             put("map",new Map());
@@ -36,17 +36,18 @@ public class CommandParser {
             put("room",new RoomInformation());
             put("roominformation",new RoomInformation());
 
-            put("increasestat" +
-                    "'",new Talk());
+            put("increasestat" ,new IncreaseStat());
             put("equip", new EquipItem());
             put("equipment",new Equipment());
 
             put("take", new PickUpItem());
             put("pick", new PickUpItem());
+            put("pickup", new PickUpItem());
 
             put("help",new Help());
             put("quit",new Quit());
-            put("look",new Look());
+//            put("look",new Look());
+
         }
     };
 
@@ -58,7 +59,7 @@ public class CommandParser {
     public static Command parseInput(String input){
         input = input.toLowerCase();
         String[] inputs = input.split(" ");
-        Command cmd = commandsAvailable.getOrDefault(inputs[0],null);
+        Command cmd = commandsAvailable.getOrDefault(inputs[0],new InvalidInput());
         if (cmd != null){
             cmd.setArguments(inputsToArrayList(inputs,1));
         }

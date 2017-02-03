@@ -101,6 +101,22 @@ public class Quest {
         this.completeStatus = completeStatus;
     }
 
+    public void setTargetMonsters(HashMap<String, Integer> targetMonsters) {
+        this.targetMonsters = targetMonsters;
+    }
+
+    public void setTargetItems(HashMap<String, Integer> targetItems) {
+        this.targetItems = targetItems;
+    }
+
+    public void setMonstersCompletion(HashMap<String, Integer> monstersCompletion) {
+        this.monstersCompletion = monstersCompletion;
+    }
+
+    public void setItemsCompletion(HashMap<String, Integer> itemsCompletion) {
+        this.itemsCompletion = itemsCompletion;
+    }
+
     public HashMap<String, Integer> getTargetMonsters() {
         return targetMonsters;
     }

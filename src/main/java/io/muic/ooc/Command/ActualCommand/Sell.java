@@ -13,4 +13,8 @@ public class Sell extends Command{
         //Take item from the player and sell it
         return true;
     }
+
+    public void help(){
+        System.out.println("Sell <item> -- not implemented");
+    }
 }

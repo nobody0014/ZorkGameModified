@@ -36,4 +36,8 @@ public class Stat extends Command {
         System.out.println("Critical Chance: " + (player.getCriticalChance()));
         return true;
     }
+
+    public void help(){
+        System.out.println("stat -- tell the stat of the player");
+    }
 }

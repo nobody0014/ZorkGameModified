@@ -37,7 +37,33 @@ public class ZorkRunner {
     public boolean executeCommand(Command cmd){
         cmd.setPlayer(player);
         cmd.setCurrentLevel(currentLevel);
-        return cmd.execute();
+        boolean toReturn  = cmd.execute();
+        setCurrentLevel(cmd.getCurrentLevel());
+        ZorkView.printFinishLine();
+        return toReturn;
     }
 
+    public static Level getHubLevel() {
+        return hubLevel;
+    }
+
+    public static void setHubLevel(Level hubLevel) {
+        ZorkRunner.hubLevel = hubLevel;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Level getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 }

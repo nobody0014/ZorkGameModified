@@ -1,5 +1,6 @@
 package io.muic.ooc.Command;
 
+import io.muic.ooc.MainLoop.ZorkRunner;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.Unit.Player;
 
@@ -9,11 +10,14 @@ import java.util.ArrayList;
  * Created by wit on 1/12/2017 AD.
  */
 public abstract class Command  {
+
     Player player;
     Level currentLevel;
     ArrayList<String> arguments = null;
 
     public abstract boolean execute();
+
+    public abstract void help();
 
     public void setPlayer(Player player) {
         this.player = player;

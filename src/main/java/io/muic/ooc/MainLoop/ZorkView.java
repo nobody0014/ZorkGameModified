@@ -1,10 +1,12 @@
 package io.muic.ooc.MainLoop;
 
+import io.muic.ooc.Item.Item;
 import io.muic.ooc.RoomAndLevel.Room;
 import io.muic.ooc.RoomAndLevel.Level;
+import io.muic.ooc.Unit.NPC;
 
 import java.io.InputStream;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by wit on 1/30/2017 AD.
@@ -37,52 +39,44 @@ public class ZorkView {
         System.out.println();
     }
 
+    public static void printCurrentRoomInformation(Level currentLevel){
+        Room currentRoom = currentLevel.getCurrentRoom();
+        List<NPC> npcs = currentRoom.getNpcs();
+        List<Item> loots = currentRoom.getItems();
+        Set<String> roomExits = currentRoom.getExits().keySet();
+        Set<String> levelExits = currentRoom.getLevelExits().keySet();
 
+        System.out.println("Level Name: " + currentLevel.getLevelName());
+        System.out.println("Room Location: " + currentRoom.getRoomX() + " " + currentRoom.getRoomY());
+        System.out.println("List of NPC (in order): ");
+        Collections.sort(npcs, (o1, o2) -> {
+            if (o1.getClass().toString().compareTo(o2.getClass().toString()) != 0){
+                return o1.getClass().toString().compareTo(o2.getClass().toString());
+            }else{
+                return o1.getUnitName().compareTo(o2.getUnitName());
+            }
+        });
+        for (int i = 0; i < npcs.size(); i++){
+            System.out.println(i + ") " + npcs.get(i).getUnitName());
+        }
+        System.out.println("List of available loots for pick up:");
+        for (int i = 0; i < loots.size(); i++){
+            System.out.println(i + ") " + loots.get(i).getItemName());
+        }
 
-    public static void printInvalidCommand(){
-        System.out.println("The input command is invalid");
-    }
+        System.out.println("Available Room Exits: ");
+        for (String exit: roomExits){
+            if (currentRoom.getExits().get(exit).isVisited()){
+                System.out.println(exit + ": visited");
+            }else {
+                System.out.println(exit + ": not visited");
+            }
+        }
 
-    public static void printInvalidItemPlayer(){
-        System.out.println("Specified item does not exist in the player's bag");
-    }
-
-    public static void printInvalidItemShop(){
-        System.out.println("Specified item doesn not exist in the shop");
-    }
-
-    public static void printInvalidPick(){
-        System.out.println("Item/Skill specified does not exist in the current room");
-    }
-
-    public static void printInvalidAttack(){
-        System.out.println("The specified NPC does not exists to be attacked");
-    }
-
-    public static void printInvalidSkill(){
-        System.out.println("There's no such skill available");
-    }
-
-    public static void printInvalidStat(){
-        System.out.println("There's no such NPC available");
-    }
-
-    public static void printInvalidConsumable(){
-        System.out.println("There's no such consumable in your inventory");
-    }
-
-    public static void printInvalidMovement(){
-        System.out.println("There's no such direction or level");
-    }
-
-    public static void printRoomDetail(Level level){
-        Room room = level.getCurrentRoom();
-        System.out.println("Current Level Information: " + level.getLevelName() + " " + room.getRoomX() + " " + room.getRoomY());
-        System.out.println("NPC: " + room.getNpcs().toString());
-        System.out.println("Item Pickable: " + room.getItems().toString());
-        System.out.println("Room Exits: " + room.getExits().keySet().toString());
-        System.out.println("Level Exits: " + room.getLevelExits().keySet().toString());
-        printFinishLine();
+        System.out.println("Available Level Room Exits: ");
+        for (String exit: levelExits){
+            System.out.println(exit);
+        }
     }
 
     public static boolean quitGame(){

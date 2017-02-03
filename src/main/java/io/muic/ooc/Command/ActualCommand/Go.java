@@ -1,6 +1,7 @@
 package io.muic.ooc.Command.ActualCommand;
 
 import io.muic.ooc.Command.Command;
+import io.muic.ooc.MainLoop.ZorkView;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.RoomAndLevel.Room;
 import io.muic.ooc.Unit.Player;
@@ -14,15 +15,18 @@ public class Go extends Command{
 
     @Override
     public boolean execute(){
-        Level currrentLevel = getCurrentLevel();
-        Room currentRoom = currrentLevel.getCurrentRoom();
+        Level currentLevel = getCurrentLevel();
+        Room currentRoom = currentLevel.getCurrentRoom();
         List<String> arguments = getArguments();
         if (arguments.size() > 0) {
             String destination = arguments.get(0);
             if(currentRoom.getExits().keySet().contains(destination)){
-                currrentLevel.changeRoom(destination);
+                currentLevel.changeRoom(destination);
+                ZorkView.printCurrentRoomInformation(getCurrentLevel());
             }else if (currentRoom.getLevelExits().keySet().contains(destination)){
-                currrentLevel.changeLevel(destination);
+                Level newLevel = currentLevel.changeLevel(destination);
+                setCurrentLevel(newLevel);
+                ZorkView.printCurrentRoomInformation(getCurrentLevel());
             }else {
                 System.out.println("The specified destination does not exist");
             }
@@ -30,6 +34,10 @@ public class Go extends Command{
             System.out.println("Did not specify destination");
         }
         return true;
+    }
+
+    public void help(){
+        System.out.println("go <destination/direction> -- self explainatory");
     }
 
 }

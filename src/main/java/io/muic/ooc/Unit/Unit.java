@@ -293,5 +293,7 @@ public abstract class Unit {
         return inventory;
     }
 
-
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
 }

@@ -32,4 +32,8 @@ public class Inventory extends Command {
         }
         return true;
     }
+
+    public void help(){
+        System.out.println("inventory -- printing out the information of the equipment of the player");
+    }
 }

@@ -146,6 +146,6 @@ public class Attack extends Command{
     }
 
     public void help(){
-        System.out.println("Attack <target>, only 1 target will be attacked, other specified target will not be attacked");
+        System.out.println("Attack <target> -- only 1 target will be attacked, other specified target will not be attacked");
     }
 }

@@ -44,4 +44,8 @@ public class Use extends Command {
         }
         return true;
     }
+
+    public void help(){
+        System.out.println("use <consumable> -- use the consumable in the inventory");
+    }
 }
