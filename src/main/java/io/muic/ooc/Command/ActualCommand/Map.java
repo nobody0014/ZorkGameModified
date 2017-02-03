@@ -32,7 +32,9 @@ public class Map extends Command{
                 Room r = map[i][j];
                 if (r == null){
                     toPrint.append(" ,");
-                }else if(r.isVisited()){
+                }else if(i == currentLevel.getPlayerX() && j == currentLevel.getPlayerY() ){
+                    toPrint.append("P,");
+                } else if(r.isVisited()){
                     toPrint.append("V,");
                 }else{
                     toPrint.append("R,");

@@ -18,7 +18,8 @@ public class ZorkRunner {
 
     public ZorkRunner(String name){
         player = new Player(name);
-        currentLevel = LevelFactory.hub;
+        currentLevel = LevelFactory.HUB;
+        currentLevel.getCurrentRoom().getLevelExits().put("forest",LevelFactory.createFirstLevelFirstDungeon());
         Command cmd = new RoomInformation();
         cmd.setPlayer(player);
         cmd.setCurrentLevel(currentLevel);

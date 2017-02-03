@@ -6,17 +6,19 @@ import java.util.HashMap;
  * Created by wit on 1/30/2017 AD.
  */
 public class LevelFactory {
-    public static Level hub = new Level(1,"hub",0){
-        {
-            addRoom(0,0,RoomFactory.createHubRoom());
-            setPlayerX(0);
-            setPlayerY(0);
-        }
-    };
+    public static final Level HUB = createHub();
+
+    public static Level createHub(){
+        Level hub = new Level(1,"hub",0);
+        hub.addRoom(0,0,RoomFactory.createHubRoom());
+        hub.setPlayerX(0);
+        hub.setPlayerY(0);
+        return hub;
+    }
 
     public static HashMap<String, Level> levelHashMap = new HashMap<String, Level>(){
         {
-            put("hub", hub);
+            put("hub", HUB);
             put("forest", createFirstLevelFirstDungeon());
         }
     };
@@ -44,7 +46,7 @@ public class LevelFactory {
         //first room 0,0
         firstLevel.getSpecifiedRoom(0,0).addExit("east",firstLevel.getSpecifiedRoom(1,0));
         firstLevel.getSpecifiedRoom(0,0).addExit("south",firstLevel.getSpecifiedRoom(0,1));
-        firstLevel.getSpecifiedRoom(0,0).addLevelExit("hub", LevelFactory.hub);
+        firstLevel.getSpecifiedRoom(0,0).addLevelExit("hub", LevelFactory.HUB);
 
         //second room 0,1
         firstLevel.getSpecifiedRoom(0,1).addExit("north",firstLevel.getSpecifiedRoom(0,0));
@@ -79,7 +81,7 @@ public class LevelFactory {
 
         //3,3
         firstLevel.getSpecifiedRoom(3,3).addExit("north",firstLevel.getSpecifiedRoom(3,2));
-        firstLevel.getSpecifiedRoom(3,3).addLevelExit("hub", LevelFactory.hub);
+        firstLevel.getSpecifiedRoom(3,3).addLevelExit("hub", LevelFactory.HUB);
 
         //1,2
         firstLevel.getSpecifiedRoom(1,2).addExit("west",firstLevel.getSpecifiedRoom(0,2));

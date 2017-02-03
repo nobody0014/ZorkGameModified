@@ -65,8 +65,8 @@ public class Talk extends Command{
             Quest newQuest  = questGiver.getQuest();
             player.getCurrentQuests().add(newQuest);
             for(String location: newQuest.getQuestPossibleLocations()){
-                if (!LevelFactory.hub.getCurrentRoom().getLevelExits().keySet().contains(location)) {
-                    LevelFactory.hub.getCurrentRoom().getLevelExits().put(location, LevelFactory.levelHashMap.get(location));
+                if (!LevelFactory.HUB.getCurrentRoom().getLevelExits().keySet().contains(location)) {
+                    LevelFactory.HUB.getCurrentRoom().getLevelExits().put(location, LevelFactory.levelHashMap.get(location));
                 }
             }
             System.out.println("Quest " + newQuest.getQuestName() + " has been obtained.");

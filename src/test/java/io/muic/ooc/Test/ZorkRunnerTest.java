@@ -54,4 +54,69 @@ public class ZorkRunnerTest {
         Assert.assertTrue(zorkRunner.executeCommand(cmd));
         Assert.assertSame("forest", zorkRunner.getCurrentLevel().getLevelName());
     }
+
+    @Test
+    public void executeMoveBackToHubLevel() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go hub");
+
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertSame("hub", zorkRunner.getCurrentLevel().getLevelName());
+    }
+
+    @Test
+    public void executeMoveToForestLevelGoSouth() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go forest");
+
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+
+        cmd  = CommandParser.parseInput("go south");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerX());
+        Assert.assertSame(1, zorkRunner.getCurrentLevel().getPlayerY());
+
+    }
+
+    @Test
+    public void executeMoveToForestLevelGoEast() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go forest");
+
+        zorkRunner.executeCommand(cmd);
+
+        cmd  = CommandParser.parseInput("go east");
+        zorkRunner.executeCommand(cmd);
+        Assert.assertSame(1, zorkRunner.getCurrentLevel().getPlayerX());
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerY());
+    }
+
+    @Test
+    public void executeMoveToForestLevelGoEastGoEast() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go forest");
+
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+
+        cmd  = CommandParser.parseInput("go east");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertSame(2, zorkRunner.getCurrentLevel().getPlayerX());
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerY());
+    }
+
+    @Test
+    public void executeMoveToForestLevelGoEastGoWest() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go forest");
+
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+
+        cmd  = CommandParser.parseInput("go east");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        cmd  = CommandParser.parseInput("go west");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerX());
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerY());
+    }
 }
