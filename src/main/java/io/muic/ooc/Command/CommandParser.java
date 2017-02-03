@@ -44,6 +44,7 @@ public class CommandParser {
             put("pick", new PickUpItem());
             put("pickup", new PickUpItem());
 
+            put("reset",new Reset());
             put("help",new Help());
             put("quit",new Quit());
 //            put("look",new Look());

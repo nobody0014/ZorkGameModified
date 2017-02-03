@@ -26,6 +26,7 @@ public class Go extends Command{
             }else if (currentRoom.getLevelExits().keySet().contains(destination)){
                 Level newLevel = currentLevel.changeLevel(destination);
                 setCurrentLevel(newLevel);
+                getCurrentLevel().getCurrentRoom().enter();
                 ZorkView.printCurrentRoomInformation(getCurrentLevel());
             }else {
                 System.out.println("The specified destination does not exist");

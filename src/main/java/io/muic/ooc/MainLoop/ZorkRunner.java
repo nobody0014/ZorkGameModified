@@ -23,6 +23,7 @@ public class ZorkRunner {
         Command cmd = new RoomInformation();
         cmd.setPlayer(player);
         cmd.setCurrentLevel(currentLevel);
+        getCurrentLevel().getCurrentRoom().enter();
         cmd.execute();
     }
 

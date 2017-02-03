@@ -12,7 +12,7 @@ import java.util.List;
  */
 public abstract class Unit {
 
-    private boolean isAlive;
+    private boolean isAlive = true;
 
 
     private String unitName;

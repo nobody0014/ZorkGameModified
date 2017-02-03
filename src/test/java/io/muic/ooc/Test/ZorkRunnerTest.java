@@ -119,4 +119,50 @@ public class ZorkRunnerTest {
         Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerX());
         Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerY());
     }
+
+    @Test
+    public void executeResetForest() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go forest");
+
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+
+        cmd  = CommandParser.parseInput("go east");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        cmd  = CommandParser.parseInput("go west");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerX());
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerY());
+
+
+        cmd  = CommandParser.parseInput("go hub");
+        zorkRunner.executeCommand(cmd);
+        cmd = CommandParser.parseInput("reset forest");
+        zorkRunner.executeCommand(cmd);
+        cmd  = CommandParser.parseInput("go forest");
+        zorkRunner.executeCommand(cmd);
+        Assert.assertTrue(zorkRunner.getCurrentLevel().getCurrentRoom().isVisited());
+    }
+
+    @Test
+    public void executeResetForestVisted() throws Exception {
+        ZorkRunner zorkRunner = new ZorkRunner("wit");
+        Command cmd  = CommandParser.parseInput("go forest");
+
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+
+        cmd  = CommandParser.parseInput("go east");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        cmd  = CommandParser.parseInput("go west");
+        Assert.assertTrue(zorkRunner.executeCommand(cmd));
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerX());
+        Assert.assertSame(0, zorkRunner.getCurrentLevel().getPlayerY());
+
+
+        cmd  = CommandParser.parseInput("go hub");
+        zorkRunner.executeCommand(cmd);
+        cmd = CommandParser.parseInput("reset forest");
+        zorkRunner.executeCommand(cmd);
+        Assert.assertFalse(zorkRunner.getCurrentLevel().getCurrentRoom().getLevelExit("forest").getSpecifiedRoom(1,0).isVisited());
+    }
 }

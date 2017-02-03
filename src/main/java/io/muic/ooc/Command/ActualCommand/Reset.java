@@ -18,6 +18,7 @@ public class Reset extends Command {
             if (destinations.contains(getArguments().get(0))){
                 String levelName = getArguments().get(0);
                 currentLevel.getCurrentRoom().getLevelExits().put(levelName, LevelFactory.levelHashMap.get(levelName));
+                System.out.println(levelName + " has been reset");
             }else {
                 System.out.println("The target level is not available from this room");
             }
