@@ -24,9 +24,11 @@ public class ZorkGame {
         while (true){
             String command = cin.nextLine();
             Command cmd  = CommandParser.parseInput(command);
+            ZorkView.printFinishLine();
             if (!zorkRunner.executeCommand(cmd)){
                 break;
             }
+            ZorkView.printFinishLine();
         }
         System.out.println("Thank you for playing");
     }

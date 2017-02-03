@@ -1,5 +1,7 @@
 package io.muic.ooc.MainLoop;
 
+import io.muic.ooc.Command.ActualCommand.Map;
+import io.muic.ooc.Command.ActualCommand.RoomInformation;
 import io.muic.ooc.Command.Command;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.RoomAndLevel.LevelFactory;
@@ -21,7 +23,10 @@ public class ZorkRunner {
     public ZorkRunner(String name){
         player = new Player(name);
         currentLevel = hubLevel;
-        ZorkView.printRoomDetail(currentLevel);
+        Command cmd = new RoomInformation();
+        cmd.setPlayer(player);
+        cmd.setCurrentLevel(currentLevel);
+        cmd.execute();
     }
 
     /**

@@ -30,7 +30,7 @@ public class Equipment extends Item{
         this.extraWis = wis;
         this.extraDex = dex;
         this.extraLuck = luck;
-        this.equipmentSlot = EquipmentFactory.EQUIPMENT_SLOT.get(this.equipment_type);
+        this.equipmentSlot = EquipmentFactory.EQUIPMENT_TYPE_INTEGER_HASH_MAP.get(this.equipment_type);
     }
 
     public int getEquipmentSlot(){

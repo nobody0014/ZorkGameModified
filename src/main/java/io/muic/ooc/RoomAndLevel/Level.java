@@ -21,6 +21,15 @@ public class Level {
         this.levelName = levelName;
     }
 
+
+    public void fillAllRooms(){
+        for (int i = 0; i < rooms.length;i++){
+            for (int j = 0; j < rooms.length; j++){
+                rooms[i][j] = null;
+            }
+        }
+    }
+
     /**
      * This method is used to check whether the pattern of the password is correct or not
      * @param locationX location of the Room in Level x matrix,
@@ -38,42 +47,29 @@ public class Level {
         return false;
     }
 
+    public void changeRoom(String direction){
+        if (direction.equals("north") ){ //&& getPlayerY()-1 >= 0 && rooms[getPlayerX()][getPlayerY()-1] != null
+            setPlayerY(getPlayerY()-1);
+        }else if (direction.equals("south")) { //&& getPlayerY()+1 < getSize() && rooms[getPlayerX()][getPlayerY()+1] != null
+            setPlayerY(getPlayerY()+1);
+        }else if (direction.equals("east")){ //&& getPlayerX()+1 < getSize()  && rooms[getPlayerX()+1][getPlayerY()] != null
+            setPlayerX(getPlayerX()+1);
+        }else if (direction.equals("west") ){ //&& getPlayerX()-1 >= 0 && rooms[getPlayerX()-1][getPlayerY()] != null
+            setPlayerX(getPlayerX()-1);
+        }
+        getCurrentRoom().enter();
+    }
+
+    public Level changeLevel(String desiredDestination){
+        return getCurrentRoom().getLevelExit(desiredDestination);
+    }
+
     public Room getCurrentRoom(){
         return rooms[getPlayerX()][getPlayerY()];
     }
 
     public Room getSpecifiedRoom(int x, int y){
         return rooms[x][y];
-    }
-
-    public void fillAllRooms(){
-        for (int i = 0; i < rooms.length;i++){
-            for (int j = 0; j < rooms.length; j++){
-                rooms[i][j] = null;
-            }
-        }
-    }
-
-    public boolean changeRoom(String direction){
-        boolean changeRoomSuccess = false;
-        if (direction.equals("north") && getPlayerY()-1 >= 0 && rooms[getPlayerX()][getPlayerY()-1] != null){
-            changeRoomSuccess = true;
-            setPlayerY(getPlayerY()-1);
-        }else if (direction.equals("south") && getPlayerY()+1 < getSize() && rooms[getPlayerX()][getPlayerY()+1] != null) {
-            changeRoomSuccess = true;
-            setPlayerY(getPlayerY()+1);
-        }else if (direction.equals("east") && getPlayerX()+1 < getSize()  && rooms[getPlayerX()+1][getPlayerY()] != null){
-            changeRoomSuccess = true;
-            setPlayerX(getPlayerX()+1);
-        }else if (direction.equals("west") && getPlayerX()-1 >= 0 && rooms[getPlayerX()-1][getPlayerY()] != null){
-            changeRoomSuccess = true;
-            setPlayerX(getPlayerX()-1);
-        }
-        return changeRoomSuccess;
-    }
-
-    public Level changeLevel(String desiredDestination){
-        return rooms[getPlayerX()][getPlayerY()].getLevelExit(desiredDestination);
     }
 
     public int getPlayerX() {
@@ -115,8 +111,6 @@ public class Level {
     public void setLevelName(String levelName) {
         this.levelName = levelName;
     }
-
-
 
     public Room[][] getRooms() {
         return rooms;

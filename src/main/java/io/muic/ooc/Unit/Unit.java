@@ -65,6 +65,14 @@ public abstract class Unit {
         }
     }
 
+    public void gainMana(int mana) {
+        if (getCurrentMana() + mana > getMaxMana()) {
+            setCurrentHp(getMaxMana());
+        } else {
+            setCurrentHp(getCurrentMana() + mana);
+        }
+    }
+
     public void fillHP(){
         setCurrentHp(getMaxHp());
     }

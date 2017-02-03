@@ -15,34 +15,27 @@ public class QuestGiver extends NPC {
     public int questLevel = 1;
 
     Quest[] quests;
-    Dungeon[] dungeons;
 
     public QuestGiver(String name){
         super(name);
     }
 
-    /**
-     * give the quest, will look at the current level
-     */
-    public Quest getQuest(){
-        return quests[questLevel];
-    }
 
-    public Dungeon getDungeon(){
-        return dungeons[questLevel];
+    public Quest getQuest(){
+        if (questLevel < quests.length){
+            return quests[questLevel];
+        }else {
+            return  null;
+        }
+
     }
 
     public void questDone(){
         questLevel++;
     }
 
-
-
     public void setQuests(Quest[] quests) {
         this.quests = quests;
     }
 
-    public void setDungeons(Dungeon[] dungeons) {
-        this.dungeons = dungeons;
-    }
 }

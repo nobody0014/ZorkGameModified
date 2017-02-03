@@ -77,7 +77,7 @@ public class ZorkView {
 
     public static void printRoomDetail(Level level){
         Room room = level.getCurrentRoom();
-        System.out.println("Current Level Information: " + level.getRoomsName() + " " + room.getRoomX() + " " + room.getRoomY());
+        System.out.println("Current Level Information: " + level.getLevelName() + " " + room.getRoomX() + " " + room.getRoomY());
         System.out.println("NPC: " + room.getNpcs().toString());
         System.out.println("Item Pickable: " + room.getItems().toString());
         System.out.println("Room Exits: " + room.getExits().keySet().toString());

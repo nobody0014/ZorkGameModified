@@ -3,6 +3,7 @@ package io.muic.ooc.Command.ActualCommand;
 import io.muic.ooc.Calculator.DamageCalculator;
 import io.muic.ooc.Command.Command;
 import io.muic.ooc.Item.Item;
+import io.muic.ooc.MainLoop.ZorkView;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.RoomAndLevel.Room;
 import io.muic.ooc.Unit.MonsterFactory;
@@ -38,7 +39,6 @@ public class Attack extends Command{
         }else {
             System.out.println("invalid input");
         }
-
         return true;
     }
 

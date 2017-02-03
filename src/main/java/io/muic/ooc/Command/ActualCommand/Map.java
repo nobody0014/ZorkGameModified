@@ -1,6 +1,7 @@
 package io.muic.ooc.Command.ActualCommand;
 
 import io.muic.ooc.Command.Command;
+import io.muic.ooc.MainLoop.ZorkView;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.RoomAndLevel.Room;
 import io.muic.ooc.Unit.Player;
@@ -18,9 +19,6 @@ public class Map extends Command{
     @Override
     public boolean execute() {
         Level currentLevel = getCurrentLevel();
-        Room currentRoom = currentLevel.getCurrentRoom();
-        Player player = getPlayer();
-        ArrayList<String> args = getArguments();
         printOutCurrentMap(currentLevel);
         return true;
     }
@@ -44,5 +42,6 @@ public class Map extends Command{
             toPrint.append("\n");
         }
         System.out.println(toPrint);
+        ZorkView.printFinishLine();
     }
 }

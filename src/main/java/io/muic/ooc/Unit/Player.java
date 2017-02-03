@@ -49,6 +49,8 @@ public class Player extends Unit {
         updateStatus();
         fillHP();
         fillMana();
+        setCurrentQuests(new ArrayList<>());
+        setCompletedQuests(new ArrayList<>());
     }
 
 
@@ -159,13 +161,6 @@ public class Player extends Unit {
         }
         equipments[slot] = equipment;
     }
-
-
-    @Override
-    public void printInformation(){
-        super.printInformation();
-    }
-
 
 
     public boolean increaseStr(){
@@ -347,6 +342,20 @@ public class Player extends Unit {
         this.equipments = equipments;
     }
 
+    public ArrayList<Quest> getCurrentQuests() {
+        return currentQuests;
+    }
 
+    public void setCurrentQuests(ArrayList<Quest> currentQuests) {
+        this.currentQuests = currentQuests;
+    }
+
+    public ArrayList<Quest> getCompletedQuests() {
+        return completedQuests;
+    }
+
+    public void setCompletedQuests(ArrayList<Quest> completedQuests) {
+        this.completedQuests = completedQuests;
+    }
 }
 

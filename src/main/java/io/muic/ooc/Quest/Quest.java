@@ -11,6 +11,7 @@ import java.util.HashMap;
  */
 public class Quest {
     String questName;
+    boolean given = false;
     boolean completeStatus = false;
     boolean rewardObtained = false;
 
@@ -23,12 +24,24 @@ public class Quest {
     int questRewardExp;
     ArrayList<Item> questRewardItem;
 
+    ArrayList<String> questPossibleLocations;
 
     public Quest(String questName){
         this.questName = questName;
     }
 
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
 
+        if (object != null && object instanceof Quest) {
+            sameSame = this.questName.equals (((Quest) object).questName);
+        }else if (object != null && object instanceof String){
+            sameSame = this.questName.equals((String) object);
+        }
+        return sameSame;
+    }
 
 
     /**
@@ -126,5 +139,25 @@ public class Quest {
 
     public void setRewardObtained(boolean rewardObtained) {
         this.rewardObtained = rewardObtained;
+    }
+
+    public ArrayList<String> getQuestPossibleLocations() {
+        return questPossibleLocations;
+    }
+
+    public void setQuestPossibleLocations(ArrayList<String> questPossibleLocations) {
+        this.questPossibleLocations = questPossibleLocations;
+    }
+
+    public boolean isGiven() {
+        return given;
+    }
+
+    public void setGiven(boolean given) {
+        this.given = given;
+    }
+
+    public String getQuestName() {
+        return questName;
     }
 }

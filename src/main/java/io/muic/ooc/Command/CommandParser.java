@@ -13,11 +13,12 @@ import java.util.HashMap;
 public class CommandParser {
     public static HashMap<String, Command> commandsAvailable = new HashMap<String, Command>(){
         {
-            //DONE: Attack, Defend, Equipment, Map, Quit, RoomInformation, Stat, EquipItem, PickUpItem, Go, Inventory
+            //DONE: Attack,Defend,Equipment,Map,Quit,RoomInformation,Stat,EquipItem,PickUpItem,Go,Inventory,Use
             //IMPLEMENTING:
             //NEED FIX: DamageCalculator
-            //NOT DONE: Talk, Sell, Help
-            //NOT GOING TO IMPLEMENT: Look
+            //NOT DONE: Help,
+            //NOT GOING TO IMPLEMENT: Look,Buy,Sell
+
 
             put("attack",new Attack());
             put("defend",new Defend());
@@ -35,6 +36,8 @@ public class CommandParser {
             put("room",new RoomInformation());
             put("roominformation",new RoomInformation());
 
+            put("increasestat" +
+                    "'",new Talk());
             put("equip", new EquipItem());
             put("equipment",new Equipment());
 

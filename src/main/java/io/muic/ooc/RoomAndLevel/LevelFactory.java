@@ -1,9 +1,21 @@
 package io.muic.ooc.RoomAndLevel;
 
+import java.util.HashMap;
+
 /**
  * Created by wit on 1/30/2017 AD.
  */
 public class LevelFactory {
+    public static Level hub = createHubLevel();
+
+    public static HashMap<String, Level> levelHashMap = new HashMap<String, Level>(){
+        {
+            put("hub", hub);
+            put("forest", createFirstLevelFirstDungeon());
+        }
+    };
+
+
     public static Level createHubLevel(){
         Level hubLevel = new Level(1,"hub",0);
         hubLevel.addRoom(0,0,RoomFactory.createHubRoom());
@@ -32,6 +44,7 @@ public class LevelFactory {
         //first room 0,0
         firstLevel.getSpecifiedRoom(0,0).addExit("east",firstLevel.getSpecifiedRoom(1,0));
         firstLevel.getSpecifiedRoom(0,0).addExit("south",firstLevel.getSpecifiedRoom(0,1));
+        firstLevel.getSpecifiedRoom(0,0).addLevelExit("hub", LevelFactory.hub);
 
         //second room 0,1
         firstLevel.getSpecifiedRoom(0,1).addExit("south",firstLevel.getSpecifiedRoom(0,0));
@@ -67,6 +80,7 @@ public class LevelFactory {
 
         //3,3
         firstLevel.getSpecifiedRoom(3,3).addExit("east",firstLevel.getSpecifiedRoom(3,2));
+        firstLevel.getSpecifiedRoom(3,3).addLevelExit("hub", LevelFactory.hub);
 
         //1,2
         firstLevel.getSpecifiedRoom(1,2).addExit("east",firstLevel.getSpecifiedRoom(0,2));
@@ -75,6 +89,7 @@ public class LevelFactory {
         //2,2
         firstLevel.getSpecifiedRoom(2,2).addExit("east",firstLevel.getSpecifiedRoom(3,2));
         firstLevel.getSpecifiedRoom(2,2).addExit("east",firstLevel.getSpecifiedRoom(1,2));
+
 
 
 

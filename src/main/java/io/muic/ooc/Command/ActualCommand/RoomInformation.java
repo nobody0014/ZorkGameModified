@@ -7,9 +7,7 @@ import io.muic.ooc.RoomAndLevel.Room;
 import io.muic.ooc.Unit.NPC;
 import io.muic.ooc.Unit.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by wit on 2/1/2017 AD.
@@ -32,6 +30,13 @@ public class RoomInformation extends Command{
         System.out.println("Level Name: " + currentLevel.getLevelName());
         System.out.println("Room Location: " + currentRoom.getRoomX() + " " + currentRoom.getRoomY());
         System.out.println("List of NPC (in order): ");
+        Collections.sort(npcs, (o1,o2) -> {
+                if (o1.getClass().toString().compareTo(o2.getClass().toString()) != 0){
+                    return o1.getClass().toString().compareTo(o2.getClass().toString());
+                }else{
+                    return o1.getUnitName().compareTo(o2.getUnitName());
+                }
+        });
         for (int i = 0; i < npcs.size(); i++){
             System.out.println(i + ") " + npcs.get(i).getUnitName());
         }
