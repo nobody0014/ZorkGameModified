@@ -13,9 +13,10 @@ import java.util.HashMap;
 public class CommandParser {
     public static HashMap<String, Command> commandsAvailable = new HashMap<String, Command>(){
         {
-            //DONE: Attack, Defend, Equipment, Map, Quit, RoomInformation, Stat, EquipItem, PickUpItem
+            //DONE: Attack, Defend, Equipment, Map, Quit, RoomInformation, Stat, EquipItem, PickUpItem, Go, Inventory
+            //IMPLEMENTING:
             //NEED FIX: DamageCalculator
-            //NOT DONE: Talk, Sell, Inventory, Help, Go
+            //NOT DONE: Talk, Sell, Help
             //NOT GOING TO IMPLEMENT: Look
 
             put("attack",new Attack());
