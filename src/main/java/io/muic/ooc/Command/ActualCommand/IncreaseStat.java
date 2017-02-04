@@ -21,7 +21,7 @@ public class IncreaseStat extends Command {
 
         if (arguments.size() > 0){
             String stat= arguments.get(0);
-            if (stat.equals("strength") || stat.equals(stat)){
+            if (stat.equals("strength") || stat.equals("str")){
                 player.increaseStr();
             }else if (stat.equals("constitution") || stat.equals("con")){
                 player.increaseCon();

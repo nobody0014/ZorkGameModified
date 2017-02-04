@@ -6,13 +6,7 @@ import java.util.*;
  * Created by wit on 2/1/2017 AD.
  */
 public class ConsumableFactory {
-    public static List<String> consumableNames  = Arrays.asList("LevelOneHealthPotion","LevelOneManaPotion");
-
-    public static HashMap<String, Consumable> consumableHashMap= new HashMap<String, Consumable>(){{
-        put("LevelOneHealthPotion", createLevelOneHealthPotion());
-        put("LevelOneManaPotion", createLevelOneManaPotion());
-    }};
-
+    public static List<String> consumableNames  = Arrays.asList("low health potion","low mana potion");
 
     public static Consumable createLevelOneHealthPotion(){
         Consumable potion = new Consumable("low health potion", 20, 0);
@@ -26,15 +20,18 @@ public class ConsumableFactory {
 
     public static ArrayList<Consumable> createConsumables(int limit){
         ArrayList<Consumable> consumables = new ArrayList<>();
-        Random rand = new Random();
         if (limit > 0){
+            Random rand = new Random();
             int no = rand.nextInt(limit);
             for (int i = 0; i < no; i++){
                 String consumableRandomed = consumableNames.get(rand.nextInt(consumableNames.size()));
-                consumables.add(consumableHashMap.get(consumableRandomed));
+                if (consumableRandomed.equals("low health potion")){
+                    consumables.add(createLevelOneHealthPotion());
+                }else if(consumableRandomed.equals("low mana potion")){
+                    consumables.add(createLevelOneManaPotion());
+                }
             }
         }
-
         return consumables;
     }
 }

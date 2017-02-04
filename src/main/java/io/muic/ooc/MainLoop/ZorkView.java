@@ -57,7 +57,7 @@ public class ZorkView {
             }
         });
         for (int i = 0; i < npcs.size(); i++){
-            System.out.println(i + ") " + npcs.get(i).getUnitName());
+            System.out.println(i + ") " + npcs.get(i).getUnitName() + "  hp:" + npcs.get(i).getCurrentHp() + "/" +npcs.get(i).getMaxHp());
         }
         System.out.println("List of available loots for pick up:");
         for (int i = 0; i < loots.size(); i++){

@@ -37,6 +37,7 @@ public class CommandParser {
             put("roominformation",new RoomInformation());
 
             put("increasestat" ,new IncreaseStat());
+            put("increase", new IncreaseStat());
             put("equip", new EquipItem());
             put("equipment",new Equipment());
 

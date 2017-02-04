@@ -31,13 +31,7 @@ public class EquipmentFactory {
         }
     };
 
-    public static List<String> equipmentNames  = Arrays.asList("excalibur","lightsaber","woolrobe");
-
-    public static HashMap<String, Equipment> equipmentHashMap = new HashMap<String, Equipment>(){{
-        put("excalibur", createExcalibur());
-        put("lightsaber", createLightsaber());
-        put("woolrobe", createWoolRobe());
-    }};
+    public static List<String> equipmentNames  = Arrays.asList("excalibur","lightsaber","excalibur");
 
 
     public static Equipment createExcalibur(){
@@ -69,12 +63,19 @@ public class EquipmentFactory {
 
     public static ArrayList<Equipment> createEquipments(int limit){
         ArrayList<Equipment> equipments = new ArrayList<>();
-        Random rand = new Random();
-        int no = rand.nextInt(limit);
         if (limit > 0){
+            Random rand = new Random();
+            int no = rand.nextInt(limit);
             for (int i = 0; i < no; i++){
                 String equipmentRandomed = equipmentNames.get(rand.nextInt(equipmentNames.size()));
-                equipments.add(equipmentHashMap.get(equipmentRandomed));
+                if (equipmentRandomed.equals("woolrobe")){
+                    equipments.add(createWoolRobe());
+                }else if(equipmentRandomed.equals("lightsaber")){
+                    equipments.add(createLightsaber());
+                }else if(equipmentRandomed.equals("excalibur")){
+                    equipments.add(createExcalibur());
+                }
+
             }
         }
         return equipments;

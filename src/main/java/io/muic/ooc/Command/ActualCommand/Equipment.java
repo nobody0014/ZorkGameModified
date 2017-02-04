@@ -22,7 +22,7 @@ public class Equipment extends Command {
         for (int i = 0; i< player.getEquipments().length; i++){
             io.muic.ooc.Item.Equipment eq = player.getEquipments()[i];
             if (player.getEquipments()[i] != null){
-                System.out.println(eq.getEquipment_type() + ": " + eq.getItemName() + " ,strength: "  + eq.getExtraStr()
+                System.out.println(eq.getEquipment_type() + ": " + eq.getItemName() + ": strength: "  + eq.getExtraStr()
                         + " ,constitution: "  + eq.getExtraCon() + " ,dexterity: "  + eq.getExtraDex() + " ,luck: "  + eq.getExtraLuck()
                         + " ,intelligence: "  + eq.getExtraStr() + " ,wisdom: " + eq.getExtraWis());
             }else {

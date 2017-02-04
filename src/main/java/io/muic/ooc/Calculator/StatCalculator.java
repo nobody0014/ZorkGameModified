@@ -5,23 +5,23 @@ package io.muic.ooc.Calculator;
  */
 public class StatCalculator {
     public static int calculatePhysicalAttack(int str, int dex) {
-        return (int) Math.ceil(str + 0.5*dex + 5);
+        return (int) Math.ceil(str + 0.5*dex + 20);
     }
 
     public static int calculatePhysicalDefense(int str, int con) {
-        return (int) Math.ceil(str + 0.5*con + 5);
+        return (int) Math.ceil(str + 0.5*con + 10);
     }
 
     public static int calculateMagicalAttack(int intel, int wis) {
-        return (int) Math.ceil(intel + 0.5*wis + 5);
+        return (int) Math.ceil(intel + 0.5*wis + 20);
     }
 
     public static int calculateMagicalDefense(int intel, int con) {
-        return (int) Math.ceil(intel + 0.5*con + 5);
+        return (int) Math.ceil(intel + 0.5*con + 10 );
     }
 
     public static int calculateAccuracy(int dex, int luck) {
-        return (int) Math.ceil(dex + 0.5*luck + 80);
+        return (int) Math.ceil(dex + 0.5*luck + 95);
     }
 
     public static int calculateDodgeChance(int dex, int luck) {
@@ -33,12 +33,12 @@ public class StatCalculator {
     }
 
     public static int calculateMaxHp(int str, int con) {
-        return (int) Math.ceil(con + 0.5*str + 100);
+        return (int) Math.ceil(con + 0.5*str + 50);
     }
 
 
     public static int calculateMaxMana(int intel, int wis) {
-        return (int) Math.ceil(wis + 0.5*intel + 50);
+        return (int) Math.ceil(wis + 0.5*intel + 20);
     }
 
 

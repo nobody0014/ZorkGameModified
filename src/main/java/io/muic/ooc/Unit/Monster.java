@@ -18,6 +18,9 @@ public class Monster extends NPC{
         setBaseLuck(luck);
         setRarity(rarity);
         setExp(exp);
+        updateStatus();
+        fillHP();
+        fillMana();
     }
 
     public int getRarity() {

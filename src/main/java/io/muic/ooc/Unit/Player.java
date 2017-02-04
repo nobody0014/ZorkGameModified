@@ -66,8 +66,6 @@ public class Player extends Unit {
         setAccuracy(StatCalculator.calculateAccuracy(getBaseDex(),getBaseLuck()));
         setDodgeChance(StatCalculator.calculateDodgeChance(getBaseDex(),getBaseLuck()));
         setCriticalChance(StatCalculator.calculateCriticalChance(getBaseDex(),getBaseLuck()));
-        setMaxHp(StatCalculator.calculateMaxHp(getBaseStr(),getBaseCon()));
-        setMaxMana(StatCalculator.calculateMaxMana(getBaseInt(),getBaseWis()));
         setMaxExp(StatCalculator.calculateMaxExp(getLevel()));
     }
 
@@ -111,6 +109,22 @@ public class Player extends Unit {
         return success;
     }
 
+    /**
+     * place equipment in the desired slot and return the equipment that was replaced --> null if there's none
+     * @param equipment
+     * @param slot
+     * @return
+     */
+    private void equipItem(Equipment equipment, int slot){
+        Equipment toReturn = null;
+        if (equipments[slot] != null){
+            toReturn = equipments[slot];
+        }
+        if (toReturn != null){
+            addItemToInventory(toReturn);
+        }
+        equipments[slot] = equipment;
+    }
 
 
     //Quest Doing
@@ -143,23 +157,8 @@ public class Player extends Unit {
         setLevel(getLevel()+1);
         setCurrentHp(getMaxHp());
         setCurrentMana(getMaxMana());
-        setStatPoints(getStatPoints()+10);
-    }
-    /**
-     * place equipment in the desired slot and return the equipment that was replaced --> null if there's none
-     * @param equipment
-     * @param slot
-     * @return
-     */
-    private void equipItem(Equipment equipment, int slot){
-        Equipment toReturn = null;
-        if (equipments[slot] != null){
-            toReturn = equipments[slot];
-        }
-        if (toReturn != null){
-            addItemToInventory(toReturn);
-        }
-        equipments[slot] = equipment;
+        setStatPoints(getStatPoints()+5);
+        System.out.println(getUnitName() + " have level up!\nCurrent Level: " + getLevel());
     }
 
 

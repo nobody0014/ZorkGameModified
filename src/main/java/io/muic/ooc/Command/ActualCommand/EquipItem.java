@@ -21,10 +21,12 @@ public class EquipItem extends Command {
                 Integer slot = Integer.parseInt(arguments.get(0));
                 if (slot < inventory.size() && slot >= 0){
                     Item item = inventory.get(slot);
-                    inventory.remove(item);
-                    player.addItemToInventory(item);
-                    player.equip(arguments.get(0));
-                    System.out.println("You have equipped " + item.getItemName());
+                    if (player.equip(slot)){
+                        inventory.remove(item);
+                        System.out.println("You have equipped " + item.getItemName());
+                    }else {
+                        System.out.println("item specified is not an equipment ");
+                    }
                 }else {
                     System.out.println("You did not have the item");
                 }

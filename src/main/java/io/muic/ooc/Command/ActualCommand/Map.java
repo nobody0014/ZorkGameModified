@@ -29,7 +29,7 @@ public class Map extends Command{
         StringBuilder toPrint = new StringBuilder();
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
-                Room r = map[i][j];
+                Room r = map[j][i];
                 if (r == null){
                     toPrint.append(" ,");
                 }else if(i == currentLevel.getPlayerX() && j == currentLevel.getPlayerY() ){

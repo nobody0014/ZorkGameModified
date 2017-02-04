@@ -7,6 +7,7 @@ import io.muic.ooc.MainLoop.ZorkRunner;
 import io.muic.ooc.MainLoop.ZorkView;
 import io.muic.ooc.RoomAndLevel.Level;
 import io.muic.ooc.RoomAndLevel.LevelFactory;
+import io.muic.ooc.Unit.Player;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -164,5 +165,28 @@ public class ZorkRunnerTest {
         cmd = CommandParser.parseInput("reset forest");
         zorkRunner.executeCommand(cmd);
         Assert.assertFalse(zorkRunner.getCurrentLevel().getCurrentRoom().getLevelExit("forest").getSpecifiedRoom(1,0).isVisited());
+    }
+
+
+    @Test
+    public void executeLevelUp() throws Exception {
+        Player player = new Player("wit");
+        player.gainExp(20);
+        Assert.assertSame(5,player.getStatPoints());
+        player.gainExp(30);
+        Assert.assertSame(10,player.getStatPoints());
+        Assert.assertSame(3,player.getLevel());
+    }
+
+    @Test
+    public void executeFillFunctions() throws Exception {
+        Player player = new Player("wit");
+        for (int i = 0; i < player.getStatPoints(); i++){
+            player.increaseCon();
+        }
+        player.fillHP();
+        player.fillMana();
+        Assert.assertSame(player.getMaxHp(),player.getCurrentHp());
+        Assert.assertSame(player.getMaxMana(),player.getCurrentMana());
     }
 }

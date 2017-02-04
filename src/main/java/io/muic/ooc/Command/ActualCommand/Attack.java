@@ -39,6 +39,11 @@ public class Attack extends Command{
         }else {
             System.out.println("invalid input");
         }
+
+        if (!player.isAlive()){
+            System.out.println(player.getUnitName() + " have died. Game Over.");
+            return false;
+        }
         return true;
     }
 
@@ -96,8 +101,11 @@ public class Attack extends Command{
             ArrayList<Item> loots = npc.dropLoots();
             player.getInventory().addAll(loots);
             player.gainExp(npc.getExp());
+
             printGainLoot(npc);
             printGainExp(player,npc);
+            Room currentRoom = getCurrentLevel().getCurrentRoom();
+            currentRoom.getNpcs().remove(npc);
         }
     }
 
@@ -111,13 +119,14 @@ public class Attack extends Command{
 
     public void battleResult(Unit attacker, Unit defender){
         int damageDelt = DamageCalculator.calculateDamage(attacker,defender);
-        if (damageDelt > -1){
+        if (damageDelt != -1){
             defender.loseHp(damageDelt);
             printDealDamage(attacker,defender,damageDelt);
         }else {
             printMissAttack(attacker);
         }
     }
+
 
 
     public void printDealDamage(Unit attacker, Unit defender, int damageDelt){
@@ -144,6 +153,8 @@ public class Attack extends Command{
         }
         System.out.println(toPrint);
     }
+
+
 
     public void help(){
         System.out.println("Attack <target> -- only 1 target will be attacked, other specified target will not be attacked");

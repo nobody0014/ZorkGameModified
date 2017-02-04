@@ -1,6 +1,7 @@
 package io.muic.ooc.Unit;
 
 import io.muic.ooc.Calculator.StatCalculator;
+import io.muic.ooc.Command.ActualCommand.Stat;
 import io.muic.ooc.Item.Item;
 import io.muic.ooc.Skill.Skill;
 
@@ -28,8 +29,7 @@ public abstract class Unit {
     //Stats for battle --> base stat will be used to calculate them
     private int currentHp;
     private int currentMana;
-    private int maxHp;
-    private int maxMana;
+
 
     private float physicalAttack;
     private float physicalDenfense;
@@ -78,7 +78,7 @@ public abstract class Unit {
     }
 
     public void fillMana(){
-        setCurrentHp(getMaxMana());
+        setCurrentMana(getMaxMana());
     }
 
     @Override
@@ -104,15 +104,6 @@ public abstract class Unit {
         setAccuracy(StatCalculator.calculateAccuracy(getBaseDex(),getBaseLuck()));
         setDodgeChance(StatCalculator.calculateDodgeChance(getBaseDex(),getBaseLuck()));
         setCriticalChance(StatCalculator.calculateCriticalChance(getBaseDex(),getBaseLuck()));
-        setMaxHp(StatCalculator.calculateMaxHp(getBaseStr(),getBaseCon()));
-        setMaxMana(StatCalculator.calculateMaxMana(getBaseInt(),getBaseWis()));
-    }
-
-    public void printInformation(){
-        System.out.println("Unit name: " + getUnitName());
-        System.out.println("Current Level: " + getLevel());
-        System.out.println("Current HP: " + getCurrentHp() + "/" + getMaxHp());
-        System.out.println("Current Mana: " + getCurrentMana() + "/" + getMaxMana());
     }
 
 
@@ -201,19 +192,11 @@ public abstract class Unit {
     }
 
     public int getMaxHp() {
-        return maxHp;
-    }
-
-    protected void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
+        return StatCalculator.calculateMaxHp(getBaseStr(),getBaseCon());
     }
 
     public int getMaxMana() {
-        return maxMana;
-    }
-
-    protected void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
+        return StatCalculator.calculateMaxMana(getBaseInt(),getBaseWis());
     }
 
     public float getPhysicalAttack() {

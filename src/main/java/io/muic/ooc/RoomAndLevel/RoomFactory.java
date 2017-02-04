@@ -26,12 +26,13 @@ public class RoomFactory {
         for (Monster mon: monsters){
             room.addNPC(mon);
         }
-        List<Equipment> equipments = EquipmentFactory.createEquipments(3);
+        List<Equipment> equipments = EquipmentFactory.createEquipments(2);
         for (Equipment equipment: equipments){
             room.addItem(equipment);
         }
-        List<Consumable> consumables = ConsumableFactory.createConsumables(2);
+        List<Consumable> consumables = ConsumableFactory.createConsumables(4);
         for (Consumable consumable: consumables){
+            System.out.println(consumable.getItemName());
             room.addItem(consumable);
         }
         return room;

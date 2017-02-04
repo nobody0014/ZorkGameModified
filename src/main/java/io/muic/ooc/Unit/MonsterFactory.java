@@ -11,27 +11,9 @@ public class MonsterFactory {
 
     public static List<String> allMonsters = Arrays.asList("goblin","elf","wolf","orc");
 
-    public static HashMap<String,Monster> allMonsterHashMap = new HashMap<String,Monster>(){
-        {
-            put("goblin",createGoblin());
-            put("elf",createElf());
-            put("wolf",createWolf());
-            put("orc",createOrc());
-        }
-    };
-    public static HashMap<String,Monster> forestMonsterHashMap = new HashMap<String,Monster>(){
-        {
-            put("goblin",createGoblin());
-            put("elf",createElf());
-            put("wolf",createWolf());
-            put("orc",createOrc());
-        }
-    };
-
     public static Monster createGoblin(){
         Monster monster = new Monster("goblin",2,2,2,2,2,2,1,3);
         monster.setAggro(true);
-        monster.updateStatus();
         return monster;
     }
 
@@ -61,7 +43,15 @@ public class MonsterFactory {
             int no = rand.nextInt(limit);
             for (int i = 0; i < no; i++){
                 String monsterRandomed = forestMonsters.get(rand.nextInt(forestMonsters.size()));
-                monsters.add(forestMonsterHashMap.get(monsterRandomed));
+                if (monsterRandomed.equals("goblin")){
+                    monsters.add(createGoblin());
+                }else if (monsterRandomed.equals("wolf")){
+                    monsters.add(createWolf());
+                }else if (monsterRandomed.equals("orc")){
+                    monsters.add(createOrc());
+                } else if (monsterRandomed.equals("elf")) {
+                    monsters.add(createElf());
+                }
             }
         }
         return monsters;
